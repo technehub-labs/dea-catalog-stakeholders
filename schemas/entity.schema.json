@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://technehub-labs.github.io/dea-catalog-stakeholders/schemas/entity.schema.json",
+  "title": "Stakeholder Catalog Entry",
+  "description": "Schema for entries in technehub-labs/dea-catalog-stakeholders. Validates against the canonical metamodel schema at technehub-labs/dea-metamodel/schemas/entities/stakeholder.json.",
+  "type": "object",
+  "required": ["id", "name", "type", "version", "stakeholder_type"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*:[a-z0-9-]+$"
+    },
+    "type": { "type": "string", "const": "Stakeholder" },
+    "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "description": { "type": "string", "maxLength": 2000 },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "stakeholder_type": {
+      "type": "string",
+      "enum": ["customer", "partner", "supplier", "regulator", "investor", "community", "board"]
+    },
+    "relationship_direction": {
+      "type": "string",
+      "enum": ["inbound", "outbound", "bidirectional", "governance"]
+    },
+    "primary_contact": { "type": "string" },
+    "external_identifiers": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "relationships": {
+      "type": "array",
+      "items": { "$ref": "https://technehub-labs.github.io/dea-metamodel/schemas/relationships/relationship-instance.json" }
+    },
+    "metadata": { "type": "object" }
+  }
+}
