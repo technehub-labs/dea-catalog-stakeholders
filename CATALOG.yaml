@@ -1,0 +1,29 @@
+catalog:
+  abbreviation: SH
+  counts:
+    candidates: 0
+    canonical: 0
+    entities: 0
+    open_change_requests: 1
+    research_files: 0
+    retired: 0
+  cross_cutting:
+    change_requests: change-requests/
+    classifications: classifications/
+    contributions_queue: contributions/
+    schemas: schemas/
+    validators: scripts/
+  description: 'External or affected parties whose relationship with the enterprise
+
+    is engaged in or affected by enterprise processes.
+
+    '
+  entities: []
+  id: dea:catalog-stakeholders
+  metamodel_version: ^0.2.1
+  name: Stakeholders
+  owner: TechNeHub Labs
+  repository: https://github.com/technehub-labs/dea-catalog-stakeholders.git
+  research_registers: []
+  status: active
+  version: 0.0.0
