@@ -5,7 +5,7 @@ This directory will hold Stakeholder catalog entries once Phase 2 content popula
 Each entry should be a YAML file following the schema in `../../schemas/entity.schema.json`. Example shape:
 
 ```yaml
-id: dea:stakeholder-acme-corp
+id: stakeholders:stakeholder-acme-corp-xxxxxx
 type: Stakeholder
 name: ACME Corporation
 stakeholder_type: customer
