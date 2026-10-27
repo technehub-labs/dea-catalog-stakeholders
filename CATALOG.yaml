@@ -25,5 +25,5 @@ catalog:
   owner: TechNeHub Labs
   repository: https://github.com/technehub-labs/dea-catalog-stakeholders.git
   research_registers: []
-  status: active
+  status: draft
   version: 0.0.0

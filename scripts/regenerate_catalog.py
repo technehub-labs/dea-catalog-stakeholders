@@ -206,7 +206,14 @@ def build_catalog_metadata(
         "name": pointer.get("name", catalog_root.resolve().name),
         "abbreviation": pointer.get("abbreviation", catalog_root.resolve().name[:4].upper()),
         "version": str(pointer.get("version", "0.0.0")),
-        "status": pointer.get("status", "active"),
+        # CR-CATALOG-STRUCT-10: prefer the top-level `status`, then the
+        # pointer's own generated `conformance_status` (schema-legal:
+        # the index schema's status enum is active/draft/deprecated/
+        # retired, so a nested `catalog.status: scaffold` must not flow
+        # through verbatim), else "active".
+        "status": pointer.get("status")
+        or pointer.get("conformance_status")
+        or "active",
         "metamodel_version": str(pointer.get("metamodel_version", "unknown")),
         "description": str(pointer.get("description", "")),
         "repository": detect_repository_url(catalog_root),
