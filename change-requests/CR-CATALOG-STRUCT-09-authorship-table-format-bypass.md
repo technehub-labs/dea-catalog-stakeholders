@@ -1,6 +1,6 @@
 # CR-CATALOG-STRUCT-09: Authorship Gate Table-Format Bypass (AUT-001 Coverage Hole)
 
-**Status**: Proposed
+**Status**: Merged (PR #9)
 **Layer**: L1 (Stakeholders Catalog)
 **Owner**: Emmanuel A. Otchere
 **Date**: 2026-10-27
