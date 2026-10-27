@@ -4,7 +4,7 @@
 |-------|-------|
 | **CR** | CR-CATALOG-STRUCT-07 |
 | **Title** | Entity System Stage 5-6 (Catalog Adoption + Institutionalisation) - Stakeholders Slice |
-| **Status** | Proposed (this PR) |
+| **Status** | Merged (PR #7) |
 | **Layer** | L1 (Stakeholders Catalog) |
 | **Depends on** | CR-BP-121..125 (the 6-stage institutionalisation in dea-catalog-processes) |
 | **Author** | Emmanuel A. Otchere |
