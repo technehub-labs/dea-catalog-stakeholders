@@ -1,6 +1,6 @@
 # CR-CATALOG-STRUCT-05: Stakeholders Catalog Adoption
 
-**Status**: Proposed
+**Status**: Merged (PR #3)
 **Layer**: L1 (Stakeholder Catalog)
 **Owner**: TechNeHub Labs
 **Depends on**: CR-CATALOG-STRUCT-01, CR-CATALOG-STRUCT-06a+06b
