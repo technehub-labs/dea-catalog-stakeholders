@@ -65,6 +65,9 @@ jobs:
       - name: Run ID System gate (IDM-001..007)
         run: python scripts/check_id_system.py --strict
 
+      - name: Run test suite
+        run: python -m pytest tests/ -q
+
       - name: Run ID System coherence gate (IDM-008, PR-scoped)
         run: |
           git fetch origin main --depth=1 || true

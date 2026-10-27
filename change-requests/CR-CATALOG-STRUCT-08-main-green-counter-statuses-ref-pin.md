@@ -1,6 +1,6 @@
 # CR-CATALOG-STRUCT-08: Main-Green Remediation (Counter Fix, CR Statuses, Index Row, Metaframework Ref Pin)
 
-**Status**: Proposed
+**Status**: Merged (PR #8)
 **Layer**: L1 (Stakeholders Catalog)
 **Owner**: Emmanuel A. Otchere
 **Date**: 2026-10-27
