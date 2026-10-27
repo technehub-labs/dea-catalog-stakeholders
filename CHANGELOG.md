@@ -6,6 +6,10 @@ repository is governed by change requests (`change-requests/`).
 
 ## [Unreleased]
 
+### CR-CATALOG-STRUCT-11: CI Hygiene (Pinned Dependencies, Unified Python, Job Timeouts)
+
+Review 2026-10-27 concern 8, the last deferred recommendation. Every pip install is now `==`-pinned (`pyyaml==6.0.3`, `jsonschema==4.26.0`, `pytest==9.1.1`; the versions the full suite passed under locally, proven on 3.12 by this PR's runners); `python-version: "3.12"` is unified across workflows (`catalog-conformance.yml` gains `actions/setup-python@v5`, `validate-entity-system.yml` drops `3.x`, `validate-authorship.yml` moves `@v4` -> `@v5`); and every directly-defined job carries `timeout-minutes` (15 conformance / 10 others). `validate-allocation.yml` is a reusable-workflow call whose timeout is owned upstream. Actions SHA-pinning deliberately deferred (BC-39 §8 precedent). Carrier: `change-requests/CR-CATALOG-STRUCT-11-ci-hygiene-pinning-and-timeouts.md`.
+
 ### CR status close: CR-CATALOG-STRUCT-10
 
 Per the standing landing discipline (introduced by CR-CATALOG-STRUCT-08 §2.2): CR-CATALOG-STRUCT-10's Status closes to `Merged` with landing evidence — merged as PR #10 and landed on `main` via the stack-completion PR #11 (PRs #9/#10 had merged into their stacked base branches, not `main`; #11 carried the verified stack). `CATALOG.yaml` regenerated: `open_change_requests` 1 -> 0; the index is now spotless (all carriers closed with PR evidence).
