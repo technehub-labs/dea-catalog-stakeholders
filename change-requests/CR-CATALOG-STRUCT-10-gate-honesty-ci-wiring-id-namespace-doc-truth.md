@@ -1,6 +1,6 @@
 # CR-CATALOG-STRUCT-10: Gate Honesty, CI Test Wiring, Id-Namespace Alignment, Doc Truth
 
-**Status**: Proposed
+**Status**: Merged (PR #10, landed on `main` via the stack-completion PR #11)
 **Layer**: L1 (Stakeholders Catalog)
 **Owner**: Emmanuel A. Otchere
 **Date**: 2026-10-27
