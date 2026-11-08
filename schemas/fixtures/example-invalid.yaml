@@ -1,0 +1,9 @@
+# Invalid fixture: stakeholder_type outside the normative enum and a record
+# id outside the org-wide namespace form. Must FAIL validation
+# (check_schema.py asserts it does).
+id: stakeholders:stakeholder-example-invalid-xyz
+type: Stakeholder
+name: Example Invalid Stakeholder
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: nemesis

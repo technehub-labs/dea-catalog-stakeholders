@@ -15,15 +15,19 @@ catalog:
     validators: scripts/
   description: 'External or affected parties whose relationship with the enterprise
 
-    is engaged in or affected by enterprise processes.
+    is engaged in or affected by enterprise processes. Stakeholders are
+
+    NOT internal performers — internal performers (employees, teams,
+
+    systems, AI agents) are Actors, not Stakeholders.
 
     '
   entities: []
   id: dea:catalog-stakeholders
-  metamodel_version: ^0.2.1
+  metamodel_version: 1.0.0
   name: Stakeholders
   owner: TechNeHub Labs
   repository: https://github.com/technehub-labs/dea-catalog-stakeholders.git
   research_registers: []
-  status: draft
-  version: 0.0.0
+  status: active
+  version: 0.1.0

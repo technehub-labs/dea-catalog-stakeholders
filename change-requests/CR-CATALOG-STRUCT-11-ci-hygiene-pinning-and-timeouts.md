@@ -1,6 +1,6 @@
 # CR-CATALOG-STRUCT-11: CI Hygiene (Pinned Dependencies, Unified Python, Job Timeouts)
 
-**Status**: Proposed
+**Status**: Merged (PR #13)
 **Layer**: L1 (Stakeholders Catalog)
 **Owner**: Emmanuel A. Otchere
 **Date**: 2026-10-27
