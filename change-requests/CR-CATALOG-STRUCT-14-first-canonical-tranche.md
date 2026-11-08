@@ -1,6 +1,6 @@
 # CR-CATALOG-STRUCT-14: First Canonical Tranche (11 Stakeholder Records)
 
-**Status**: Proposed
+**Status**: Merged (PR #17)
 **Layer**: L1 (Stakeholders Catalog)
 **Owner**: Emmanuel A. Otchere
 **Date**: 2026-11-08
