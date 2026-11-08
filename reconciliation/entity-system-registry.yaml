@@ -27,10 +27,22 @@ identity:
 # ES-003: Relationship (empty; no entity records declare relationships)
 relationships:
   field: relationships
-  canonical_types: []
+  # CR-CATALOG-STRUCT-13: the canonical type set for Stakeholder
+  # assertions, registered ahead of the first tranche (CR-CATALOG-STRUCT-14
+  # uses both). Types come from the metamodel relationship-instance enum
+  # (dea-metamodel v1.0.0); the metamodel schema is the vocabulary
+  # authority — never widen here beyond it.
+  canonical_types:
+    - enforces      # regulator -> dea:regulation-* (regulations catalog)
+    - publishes     # standards body -> dea:regulation-* it maintains
   forbidden_types:
     - part-of
   cross_catalog_field: identity_scope
+  type_constraints:
+    enforces:
+      source_types: [Stakeholder]
+    publishes:
+      source_types: [Stakeholder]
 
 # ES-004: Lifecycle (empty; no entity records have a lifecycle state)
 lifecycle:

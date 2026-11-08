@@ -2,11 +2,9 @@
 
 This directory will hold authoritative `v1-alpha` Stakeholder catalog entries for the TechNeHub Labs Digital Enterprise Architecture (DEA) ecosystem.
 
-Stakeholders are stored in a **flat layout** under this directory (one subtree per record), per the org-wide entity-storage-layout spec ratified in `dea-metaframework/docs/entity-storage-layout.md`, §3. Each record will be a `<level>-<slug>-<hash>` subtree containing the record YAML. The catalog is not ECF-coordinated: Stakeholder entries do not decompose into a 7x7 ECF matrix.
+Stakeholders are stored in a **flat layout** under this directory (one subtree per record), per the org-wide entity-storage-layout spec ratified in `dea-metaframework/docs/entity-storage-layout.md`, §3. Each record is a `<slug>-<hash6>` subtree containing the record YAML and a per-record README. The catalog is not ECF-coordinated: Stakeholder entries do not decompose into a 7x7 ECF matrix.
 
-This README mirrors the structural template set in `technehub-labs/dea-catalog-processes` PR #153. The flat-layout sections below replace the containment-tree and ECF-matrix sections that are specific to ECF-coordinated catalogs.
-
-> **Phase 2 deferred-population scaffold.** This catalog was brought up during Wave 3 of the org-wide id-system rollout; the contract is in place (schemas, id-form, conformance gates, CI) but no Phase 2 content admissions have landed yet. The CI early-exit pattern in `ci.yml` skips schema validation when the entities tree is empty; drop it when the first admission lands.
+> **Phase 2 population.** The population contract is `docs/FOUNDATIONS.md` (evidence channels, id minting, relationship policy) and `docs/RECORD-STANDARD.md` (per-record obligations); candidates live in `catalog-research/CANDIDATE-REGISTER.md`. The CI early-exit in `ci.yml` self-adjusts: it validates records as soon as any exist.
 
 ---
 
@@ -14,18 +12,19 @@ This README mirrors the structural template set in `technehub-labs/dea-catalog-p
 
 ```
 v1-alpha/
-├── <level>-<slug>-<hash6>/                       # L1 record subtree
-│   └── stakeholders-<level>-<slug>-<hash6>.yaml
+├── <slug>-<hash6>/                                        # record subtree
+│   ├── stakeholders-stakeholder-<slug>-<hash6>.yaml       # the record (id with ':' -> '-')
+│   └── README.md                                          # per-record documentation (IDM-007)
 └── README.md
 ```
 
-Subdirectory names follow `<level>-<slug>-<hash6>`. The 6-character hash is content-derived (first 4 bytes of the record file's SHA-256, base-31 over the alphabet `a-z` minus `i`, `l`, `o` plus digits `2-9`). See `dea-metaframework/docs/id-system.md` §2.5.
+Subdirectory names are the id's `<slug>-<hash6>` body (IDM-005: dir = id minus the `stakeholders:stakeholder-` prefix; file = the full id with `:` normalized to `-`, lowercased). The 6-character hash is assigned **once at admission** per `dea-metaframework/docs/id-system.md` §2.5 (first 4 bytes of the record file's SHA-256, big-endian, 6 base-31 digits over `abcdefghjkmnpqrstuvwxyz23456789`) and is **never recomputed** against live content afterwards — IDM-004 checks well-formedness and uniqueness only, and the CST suite does not recompute hashes either.
 
 ---
 
 ## 📄 Entity Anatomy: Stakeholders
 
-Per the DEA Metamodel, `stakeholders:Stakeholder` is the abstract kernel; concrete instances in this catalog will be specialized to `stakeholders`.
+Per the DEA Metamodel (v1.0.0), `Stakeholder` is the entity class this catalog instantiates; records validate against the closed-world projection in `schemas/entity.schema.json`.
 
 ### Canonical id forms
 
@@ -33,32 +32,35 @@ Per the DEA Metamodel, `stakeholders:Stakeholder` is the abstract kernel; concre
 | :--- | :--- |
 | L1: Stakeholder | `stakeholders:stakeholder-<slug>-<hash6>` |
 
-Each record file's id is content-addressed: changing the file's contents (without renaming the file) changes its hash. This is what makes the catalog content-addressed rather than directory-addressed.
-
-### Canonical YAML Shape (illustrative; first admission will finalize)
+### Canonical YAML Shape (metamodel v1.0.0 projection; see `schemas/fixtures/example-valid.yaml`)
 
 ```yaml
 # id pattern: stakeholders:stakeholder-<slug>-<hash6>
-id: stakeholders:stakeholder-example-slug-xxxxxx
+id: stakeholders:stakeholder-example-slug-a2b4c6
+type: Stakeholder
 name: Example Stakeholder
-definition: >
-  The illustrative definition for a Stakeholder record.
-related_records:
-  - <other-namespace>:<other-level>-...-xxxxxx
+description: 'What the party is and the capacity in which it engages the enterprise.'
+version: '1.0.0'
+lifecycle_status: active
+stakeholder_type: supplier      # customer|partner|supplier|regulator|investor|community|board
+external_references:
+  - system: <verifiable-system>
+    identifier: <resolvable-id>
+relationships:                   # optional; registered types only (ES-003)
+  - source_id: stakeholders:stakeholder-example-slug-a2b4c6
+    target_id: dea:regulation-example            # cross-catalog target
+    relationship_type: enforces
+    direction: source-to-target
+    rationale: 'Why this edge is justified.'
 ```
 
-Cross-catalog references use the org-wide id form `<namespace>:<level>-...-<hash6>`.
+Cross-catalog references use the referencing catalog's own id form (e.g. the regulations catalog's `dea:regulation-*` ids).
 
 ---
 
 ## 📈 Population Snapshot
 
-| Level | Count |
-| :--- | ---: |
-| L1 (Stakeholder) | 0 |
-| **Total** | **0** |
-
-The catalog is empty pending Phase 2 admissions. The CI early-exit pattern in `.github/workflows/ci.yml` skips schema validation while the tree is empty.
+Live counts are owned by the generated `CATALOG.yaml` (`catalog.counts` and the per-entity `entities[]` entries) — hardcoded numbers here rot, so this section deliberately carries none. The candidate-side truth (what is *not* yet admissible) lives in `catalog-research/CANDIDATE-REGISTER.md`.
 
 ---
 
@@ -66,13 +68,13 @@ The catalog is empty pending Phase 2 admissions. The CI early-exit pattern in `.
 
 This catalog is protected by an automated CI pipeline with the following gates. All gates run on every PR via `.github/workflows/catalog-conformance.yml` (and adjacent workflows):
 
-1. **`validate-entries`** (CI job)
-   Validates every record file against `schemas/entity.schema.json` and the cell-charter contract.
-   *Why it matters:* Catches malformed records and structural drift before they reach the catalog. Currently in early-exit mode (empty tree).
+1. **`validate`** (workflow `ci.yml`, job `validate-stakeholder-entries`)
+   Runs `scripts/check_schema.py` on every PR once records exist: asserts the schema stays a faithful projection of the metamodel Stakeholder schema, exercises the fixture pair, and validates every record file against `schemas/entity.schema.json` (offline, via the vendored relationship schema).
+   *Why it matters:* Catches malformed records and schema drift before they reach the catalog. Self-skipping while the tree is empty.
 
 2. **Catalog Conformance Suite** (CST, layout-agnostic, from `dea-metaframework/tools/conformance_test_catalog_structure.py`, checkout pinned `v2.6.0`)
-   Runs the 16-test CST suite that checks id-pattern conformance, content-derived hash correctness, and the flat-layout invariants.
-   *Why it matters:* Enforces the org-wide id-system contract across all 7 catalog repositories.
+   Runs the 16-test CST suite that checks id-pattern conformance and the flat-layout invariants (it does **not** recompute content hashes — see §2.5 of the id-system spec).
+   *Why it matters:* Enforces the org-wide id-system contract across the catalog fleet.
 
 3. **ID System Gate** (`scripts/check_id_system.py`)
    Runs IDM-001..007 (catalog-wide) plus IDM-008 (PR-scoped coherence via `id-system-coherence-report.md` artifact).
@@ -86,9 +88,13 @@ This catalog is protected by an automated CI pipeline with the following gates. 
    Runs the 5-rule umbrella gate (ES-001..005) under `--strict`, data-driven from `reconciliation/entity-system-registry.yaml`.
    *Why it matters:* Keeps the id/relationship/lifecycle contract honest once records exist. Vacuously CONFORMANT while the tree is empty.
 
-6. **Allocation pin** (`validate-allocation.yml`)
-   Validates `metamodel-pointer.yaml` against the OpenDEAM root model (`dea-architecture-framework@v0.2.1`).
+6. **Allocation pin** (`validate-allocation.yml`) + **pointer gate** (`scripts/check_pointer.py`)
+   Validates `metamodel-pointer.yaml` against the OpenDEAM root model (`dea-architecture-framework@v0.9.0`), and asserts pointer/allocation consistency locally.
    *Why it matters:* Detects entity-mapping drift between this catalog and the root model.
+
+6b. **Record schema projection gate** (`scripts/check_schema.py`, also in `catalog-conformance.yml`)
+   Projection-constant check (metamodel v1.0.0 faithfulness) + fixture behavior + per-record validation.
+   *Why it matters:* The catalogue schema must never become a second source of truth.
 
 7. **Catalog index + test suite** (`scripts/regenerate_catalog.py --check`, `scripts/check_catalog_index.py`, `pytest tests/`)
    Keeps `CATALOG.yaml` truthful (counts, states, paths) and runs the gate unit tests on every PR.
@@ -134,13 +140,12 @@ This catalog has secondary references to the `dea:catalog-*` self-identity recor
 
 To add the first record to this catalog:
 
-1. **Identify the record type and metadata.** Choose the canonical name, slug, and (where applicable) the ECF domain and stage the record belongs to.
-2. **File a Change Request (CR).** Create or reference an existing CR in `change-requests/` (e.g., `CR-<NS>-NN-<title>.md`).
-3. **Create the YAML.** Place the file at the correct flat-layout subtree. Compute the content-derived hash for the id. Use the org-wide id form for cross-catalog references.
-4. **Drop the early-exit.** Remove the empty-tree skip block from `.github/workflows/ci.yml` so schema validation runs on your new record.
-5. **Run Local Conformance.** Execute `scripts/check_id_system.py --strict` and the CST suite locally. The CI pipeline runs the same gates on every PR.
-6. **Regenerate Reconciliation Artifacts.** Run `scripts/regenerate_catalog.py --check --schema catalog-index-schema/catalog-index-schema.json`.
-7. **Submit PR.** Link the PR to the CR. The CI pipeline enforces the gates described above.
+1. **Identify the party and evidence.** Choose the canonical name and slug, and gather evidence per `docs/FOUNDATIONS.md` §2 (unresolvable parties go to `catalog-research/CANDIDATE-REGISTER.md`, not into this tree).
+2. **File a Change Request (CR).** Create or reference an existing CR in `change-requests/` (e.g., `CR-<NS>-NN-<title>.md`); the carrier CR must reference every admitted id (IDM-008).
+3. **Create the record + README.** Place the file at the correct flat-layout subtree (`docs/RECORD-STANDARD.md` has the shape and the README template); mint the hash6 per `docs/FOUNDATIONS.md` §3.
+4. **Run Local Conformance.** Execute `scripts/check_schema.py`, `scripts/check_pointer.py`, `scripts/check_id_system.py --strict`, `scripts/check_entity_system.py --strict`, and the pytest suite locally. The CI pipeline runs the same gates on every PR (the `ci.yml` early-exit self-adjusts once records exist — nothing to drop).
+5. **Regenerate Reconciliation Artifacts.** Run `scripts/regenerate_catalog.py --schema catalog-index-schema/catalog-index-schema.json` as the FINAL commit action, then `--check` must pass.
+6. **Submit PR.** Link the PR to the CR. The CI pipeline enforces the gates described above.
 
 For deeper metamodel definitions and the canonical id-system / entity-storage-layout specs, refer to:
 
