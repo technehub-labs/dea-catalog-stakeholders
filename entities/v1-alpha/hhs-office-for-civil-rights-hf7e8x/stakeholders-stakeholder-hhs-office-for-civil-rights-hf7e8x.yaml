@@ -1,0 +1,24 @@
+id: stakeholders:stakeholder-hhs-office-for-civil-rights-hf7e8x
+type: Stakeholder
+name: US HHS Office for Civil Rights (OCR)
+description: The US Department of Health and Human Services, Office for Civil Rights — the regulator that
+  enforces the HIPAA Privacy and Security Rules for protected health information.
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: regulator
+external_references:
+- system: official-website
+  identifier: https://www.hhs.gov/ocr
+- system: sibling-record
+  identifier: dea:regulation-us-hipaa (dea-catalog-regulations)
+tags:
+- regulator
+- health-data
+- us
+relationships:
+- source_id: stakeholders:stakeholder-hhs-office-for-civil-rights-hf7e8x
+  target_id: dea:regulation-us-hipaa
+  relationship_type: enforces
+  direction: source-to-target
+  rationale: HHS OCR enforces the HIPAA Privacy and Security Rules; the sibling record anchors the regime
+    (evidence channel 2).

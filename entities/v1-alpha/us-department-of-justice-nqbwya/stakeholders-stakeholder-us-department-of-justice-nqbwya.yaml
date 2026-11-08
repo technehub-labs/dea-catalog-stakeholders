@@ -1,0 +1,24 @@
+id: stakeholders:stakeholder-us-department-of-justice-nqbwya
+type: Stakeholder
+name: US Department of Justice (DOJ)
+description: The United States Department of Justice, the federal enforcement authority for the Defend
+  Trade Secrets Act (2016), prosecuting civil and criminal trade-secret misappropriation in federal court.
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: regulator
+external_references:
+- system: official-website
+  identifier: https://www.justice.gov
+- system: sibling-record
+  identifier: dea:regulation-us-dtsa (dea-catalog-regulations)
+tags:
+- regulator
+- trade-secrets
+- us
+relationships:
+- source_id: stakeholders:stakeholder-us-department-of-justice-nqbwya
+  target_id: dea:regulation-us-dtsa
+  relationship_type: enforces
+  direction: source-to-target
+  rationale: The DOJ enforces the Defend Trade Secrets Act (2016); the sibling record anchors the regime
+    (evidence channel 2).

@@ -62,10 +62,16 @@ Canonical id form (IDM-001, org-wide): `stakeholders:stakeholder-<slug>-<hash6>`
 
 - `<slug>` is lower-kebab (`github-platform`, `uk-information-commissioner`).
 - `<hash6>` is assigned **once, at admission**, per
-  `dea-metaframework/docs/id-system.md` §2.5: first 4 bytes of the record
-  file's SHA-256, big-endian, rendered as 6 base-31 digits over the
-  31-symbol alphabet `abcdefghjkmnpqrstuvwxyz23456789`. It is never
-  recomputed against live content afterwards; IDM-004 checks form only.
+  `dea-metaframework/docs/id-system.md` §2.5, with the derivation refined by
+  CR-CATALOG-STRUCT-14 to be reproducible without a fixed-point search:
+  sha256 over the record file bytes with (a) the `id:` line elided and (b)
+  every self-referential id string (`stakeholders:stakeholder-<slug>-<hash6>`
+  for this record's slug, as it appears in relationship `source_id`s)
+  normalized to the literal `<SELF>` — take the first 4 digest bytes
+  big-endian, reduce mod 31^6, render 6 MSB-first digits over the
+  31-symbol alphabet `abcdefghjkmnpqrstuvwxyz23456789`. The minting tool is
+  workspace `tools/emit_sh_records.py`; the suffix is never recomputed
+  against live content afterwards (IDM-004 checks form only).
 - Storage (IDM-005): subtree `entities/v1-alpha/<slug>-<hash6>/`, record
   file `stakeholders-stakeholder-<slug>-<hash6>.yaml` (the id with `:`
   normalized to `-`), plus a `README.md` in the same subtree (IDM-007).

@@ -1,0 +1,24 @@
+id: stakeholders:stakeholder-uk-information-commissioner-5e64th
+type: Stakeholder
+name: UK Information Commissioner's Office (ICO)
+description: The UK Information Commissioner's Office, the supervisory authority for the UK GDPR, with
+  enforcement powers over the enterprise's UK-facing processing.
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: regulator
+external_references:
+- system: official-website
+  identifier: https://ico.org.uk
+- system: sibling-record
+  identifier: dea:regulation-uk-gdpr (dea-catalog-regulations)
+tags:
+- regulator
+- data-protection
+- uk
+relationships:
+- source_id: stakeholders:stakeholder-uk-information-commissioner-5e64th
+  target_id: dea:regulation-uk-gdpr
+  relationship_type: enforces
+  direction: source-to-target
+  rationale: The ICO is the UK GDPR's supervisory authority; the sibling record anchors the jurisdiction
+    (evidence channel 2).

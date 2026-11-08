@@ -1,6 +1,6 @@
 # CR-CATALOG-STRUCT-13: Population Plan, Record Standard, and Relationship-Type Registration
 
-**Status**: Proposed
+**Status**: Merged (PR #16)
 **Layer**: L1 (Stakeholders Catalog)
 **Owner**: Emmanuel A. Otchere
 **Date**: 2026-11-08
