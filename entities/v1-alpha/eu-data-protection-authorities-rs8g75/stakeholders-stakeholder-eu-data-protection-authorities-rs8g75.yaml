@@ -1,0 +1,25 @@
+id: stakeholders:stakeholder-eu-data-protection-authorities-rs8g75
+type: Stakeholder
+name: European data-protection authorities (EDPB and national DPAs)
+description: The European data-protection authorities — the European Data Protection Board and the national
+  supervisory authorities it coordinates — which enforce the GDPR within their jurisdictions and hold
+  enforcement powers over the enterprise's EU-facing processing.
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: regulator
+external_references:
+- system: official-website
+  identifier: https://edpb.europa.eu
+- system: sibling-record
+  identifier: dea:regulation-eu-gdpr (dea-catalog-regulations)
+tags:
+- regulator
+- data-protection
+- eu
+relationships:
+- source_id: stakeholders:stakeholder-eu-data-protection-authorities-rs8g75
+  target_id: dea:regulation-eu-gdpr
+  relationship_type: enforces
+  direction: source-to-target
+  rationale: Regulation (EU) 2016/679 is enforced by the EDPB-coordinated national supervisory authorities;
+    the sibling record anchors the jurisdiction (evidence channel 2).

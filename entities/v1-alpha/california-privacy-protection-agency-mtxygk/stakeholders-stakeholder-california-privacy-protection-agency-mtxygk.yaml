@@ -1,0 +1,25 @@
+id: stakeholders:stakeholder-california-privacy-protection-agency-mtxygk
+type: Stakeholder
+name: California Privacy Protection Agency (CPPA) and California Attorney General
+description: The California Privacy Protection Agency and the California Attorney General, the two enforcing
+  authorities for the CCPA as amended by the CPRA, with rulemaking and enforcement powers over the enterprise's
+  California-facing processing.
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: regulator
+external_references:
+- system: official-website
+  identifier: https://cppa.ca.gov
+- system: sibling-record
+  identifier: dea:regulation-us-ccpa-cpra (dea-catalog-regulations)
+tags:
+- regulator
+- privacy
+- us-ca
+relationships:
+- source_id: stakeholders:stakeholder-california-privacy-protection-agency-mtxygk
+  target_id: dea:regulation-us-ccpa-cpra
+  relationship_type: enforces
+  direction: source-to-target
+  rationale: The CPPA (rulemaking, enforcement) and the California Attorney General (civil enforcement)
+    enforce the CCPA/CPRA; the sibling record anchors the jurisdiction (evidence channel 2).

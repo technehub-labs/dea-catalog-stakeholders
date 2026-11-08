@@ -1,0 +1,18 @@
+id: stakeholders:stakeholder-github-inc-msn3q2
+type: Stakeholder
+name: GitHub, Inc.
+description: 'Platform supplier to TechNeHub Labs: GitHub, Inc. hosts every repository in the OpenDEA
+  fleet — source control, CI runners (GitHub Actions), pull-request review, and the private-org access
+  control that gates the catalog corpus. This record carries the supplier capacity only.'
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: supplier
+external_references:
+- system: github-org
+  identifier: technehub-labs
+- system: official-website
+  identifier: https://github.com
+tags:
+- supplier
+- platform
+- hosting

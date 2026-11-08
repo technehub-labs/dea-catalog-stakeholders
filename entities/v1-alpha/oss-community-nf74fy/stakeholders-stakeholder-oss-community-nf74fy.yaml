@@ -1,0 +1,17 @@
+id: stakeholders:stakeholder-oss-community-nf74fy
+type: Stakeholder
+name: TechNeHub Labs open-source community
+description: 'The open-source community engaging TechNeHub Labs'' published corpus: licensees and consumers
+  of the Apache-2.0-licensed OpenDEA catalogs and frameworks. External to the enterprise and affected
+  by its licensing and publication decisions; distinct from internal performers (Actors catalog boundary).'
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: community
+external_references:
+- system: license
+  identifier: Apache-2.0 (LICENSE + NOTICE across the technehub-labs fleet)
+- system: github-org
+  identifier: technehub-labs
+tags:
+- community
+- open-source

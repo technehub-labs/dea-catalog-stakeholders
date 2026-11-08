@@ -6,11 +6,20 @@
 # staging).
 
 # ES-002: Entity Contract (the common envelope + type-specific profiles)
+# CR-CATALOG-STRUCT-14: the Stakeholder profile registered with the first
+# tranche (a record's `type:` must now be Stakeholder; the profile-required
+# fields are the admission obligations RECORD-STANDARD §1 adds beyond
+# CST-004's id/type/name/version/lifecycle_status).
 envelope:
   file_globs:
     - "entities/**/*.yaml"
   type_field: type
-  profiles: {}
+  profiles:
+    Stakeholder:
+      required_fields:
+        - stakeholder_type
+        - lifecycle_status
+        - external_references
 
 # ES-001: Identity
 # Canonical = the org-wide form this repo's own IDM gate enforces
