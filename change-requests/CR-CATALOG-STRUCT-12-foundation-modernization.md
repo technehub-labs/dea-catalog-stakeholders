@@ -1,6 +1,6 @@
 # CR-CATALOG-STRUCT-12: Foundation Modernization (OpenDEAM v0.9.0 Pin, Metamodel v1.0.0 Schema, Regenerator Re-Vendor, Record Gates)
 
-**Status**: Proposed
+**Status**: Merged (PR #15)
 **Layer**: L1 (Stakeholders Catalog)
 **Owner**: Emmanuel A. Otchere
 **Date**: 2026-11-08
