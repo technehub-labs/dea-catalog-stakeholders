@@ -15,8 +15,14 @@ Exit codes (stable contract):
   3  --check mode: committed CATALOG.yaml is stale
 
 Usage:
-  python tools/regenerate_catalog.py [--catalog-root PATH] [--output PATH] \\
+  python scripts/regenerate_catalog.py [--catalog-root PATH] [--output PATH] \\
       [--check] [--dry-run] [--verbose] [--schema PATH]
+
+Vendored copy (CR-CATALOG-STRUCT-12; source:
+dea-metaframework tools/regenerate_catalog.py @ origin/main, carrying
+CR-ECF-011 + the hyphen-form infer_state fix). Vendored-path adaptations:
+the usage/default-schema paths below point at this repo's layout
+(scripts/, catalog-index-schema/).
 """
 
 from __future__ import annotations
@@ -49,7 +55,9 @@ STATE_PRECEDENCE: dict[str, int] = {
 RETIRED_LIFECYCLE_STATUSES: frozenset[str] = frozenset({"deprecated", "retired"})
 
 # Schema path default; relative to the catalog root.
-DEFAULT_SCHEMA_PATH = "tools/catalog-index-schema.json"
+# Vendored-path adaptation (CR-CATALOG-STRUCT-12): this repo keeps the
+# schema at catalog-index-schema/catalog-index-schema.json.
+DEFAULT_SCHEMA_PATH = "catalog-index-schema/catalog-index-schema.json"
 
 # metamodel-pointer.yaml keys we consume (case-sensitive; mirrors what other
 # catalog repos already use).
@@ -83,18 +91,20 @@ import re
 ENTITY_ID_PATTERN = re.compile(
     r"^(dea:[a-z0-9-]+(:[a-z0-9-]+)*"
     r"|[a-z]+:(pc|group|process|activity|task|capability|candidate|actor"
-    r"|orgunit|object|service|stakeholder)-[a-z0-9-]+-[a-z2-9]{6})$"
+    r"|orgunit|object|service|stakeholder)-[a-z0-9-]+"
+    r"-[abcdefghjkmnpqrstuvwxyz23456789]{6})$"
 )
 
-# Terminal CR statuses: the org-consistent closed set, as landed in
-# dea-catalog-business-capabilities PR #91 / CR-DEA-BC-38 (itself a superset
-# of the CR-BP-114 set ratified in dea-catalog-processes).
+# Terminal CR statuses (CR-ECF-011): the org-consistent closed set, as
+# landed downstream in dea-catalog-business-capabilities PR #91 /
+# CR-DEA-BC-38 (superset of the CR-BP-114 set ratified in
+# dea-catalog-processes).
 CLOSED_CR_STATUSES = frozenset(
     {"Merged", "Landed", "Applied", "Accepted", "Rejected", "Superseded", "Withdrawn"}
 )
 
-# CR metadata shapes this repo's CRs use (CR-CATALOG-STRUCT-08): bold-line
-# (``**Status**: X``) and table (``| **Status** | X |``).
+# CR metadata shapes (CR-ECF-011): bold-line (``**Status**: X``) and
+# table (``| **Status** | X |``).
 _STATUS_LINE_RE = re.compile(r"^\*\*Status\*\*:\s*(.+)$")
 _STATUS_TABLE_RE = re.compile(r"^\|\s*\*\*Status\*\*\s*\|\s*(.+?)\s*\|$")
 
@@ -104,8 +114,9 @@ def _cr_status_token(head: str) -> str | None:
 
     Accepts both house metadata shapes, stripping trailing context such
     as ``(PR #6)``. First status line wins: a carrier CR that *quotes* a
-    status line in its body must not be misparsed by it (the
-    CR-CATALOG-STRUCT-08 self-reference case).
+    status line in its body must not be misparsed by it (observed on the
+    stakeholders carrier CR-CATALOG-STRUCT-08, whose body quotes the old
+    buggy condition).
     """
     for line in head.splitlines():
         s = line.strip()
@@ -206,14 +217,7 @@ def build_catalog_metadata(
         "name": pointer.get("name", catalog_root.resolve().name),
         "abbreviation": pointer.get("abbreviation", catalog_root.resolve().name[:4].upper()),
         "version": str(pointer.get("version", "0.0.0")),
-        # CR-CATALOG-STRUCT-10: prefer the top-level `status`, then the
-        # pointer's own generated `conformance_status` (schema-legal:
-        # the index schema's status enum is active/draft/deprecated/
-        # retired, so a nested `catalog.status: scaffold` must not flow
-        # through verbatim), else "active".
-        "status": pointer.get("status")
-        or pointer.get("conformance_status")
-        or "active",
+        "status": pointer.get("status", "active"),
         "metamodel_version": str(pointer.get("metamodel_version", "unknown")),
         "description": str(pointer.get("description", "")),
         "repository": detect_repository_url(catalog_root),
@@ -304,12 +308,22 @@ def infer_state(subtree: Path, canonical: dict[str, Any] | None) -> tuple[str, s
     that should be recorded in the entities[] entry (None if no canonical file).
     """
     entity_id = entity_id_from_subtree(subtree)
-    canonical_file = subtree / f"{entity_id}.yaml"
-    canonical_path = (
-        f"entities/v1-alpha/{entity_id}/{entity_id}.yaml"
-        if canonical_file.exists()
-        else None
-    )
+    # The canonical file may use either filename form: the colon-form id
+    # (legacy flat layout) or the normalized hyphen-form that
+    # read_canonical_yaml prefers (post-mv1 and kit-generated layouts).
+    # Checking both keeps infer_state in agreement with read_canonical_yaml;
+    # checking only the colon form misclassified every hyphen-named
+    # canonical record as a candidate (observed on
+    # dea-catalog-business-capabilities: 29 canonical records counted as
+    # candidates since the mv1 id migration).
+    hyphen_file = subtree / (entity_id.replace(":", "-").lower() + ".yaml")
+    colon_file = subtree / f"{entity_id}.yaml"
+    if hyphen_file.exists():
+        canonical_path = f"entities/v1-alpha/{entity_id}/{hyphen_file.name}"
+    elif colon_file.exists():
+        canonical_path = f"entities/v1-alpha/{entity_id}/{entity_id}.yaml"
+    else:
+        canonical_path = None
 
     has_research = state_research_present(subtree)
     has_candidates = state_candidates_present(subtree)
@@ -535,7 +549,7 @@ def count_open_change_requests(catalog_root: Path) -> int:
     """Count CR-*.md files in change-requests/ whose status is not terminal.
 
     Parses the first Status line in the file head (first 30 lines); both
-    metadata shapes parse (CR-CATALOG-STRUCT-08). Files without a parsable
+    house metadata shapes parse (CR-ECF-011). Files without a parsable
     status are conservatively counted as open.
     """
     cr_dir = catalog_root / "change-requests"
@@ -776,7 +790,7 @@ def run(argv: list[str] | None = None) -> int:
             print(f"OK: {output_path} is current")
             return 0
         print(
-            f"ERROR: {output_path} is stale; run `python tools/regenerate_catalog.py` to refresh",
+            f"ERROR: {output_path} is stale; run `python scripts/regenerate_catalog.py` to refresh",
             file=sys.stderr,
         )
         return 3

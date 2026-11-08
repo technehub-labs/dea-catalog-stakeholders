@@ -1,31 +1,60 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://technehub-labs.github.io/dea-catalog-stakeholders/schemas/entity.schema.json",
-  "title": "Stakeholder Catalog Entry",
-  "description": "Schema for entries in technehub-labs/dea-catalog-stakeholders. Validates against the canonical metamodel schema at technehub-labs/dea-metamodel/schemas/entities/stakeholder.json.",
+  "metamodel_version": "1.0.0",
+  "title": "Stakeholder (catalogue instance schema)",
+  "description": "Catalogue-instance projection of the metamodel Stakeholder entity (dea-metamodel v1.0.0 schemas/entities/stakeholder.json), aligned by CR-CATALOG-STRUCT-12. The normative field set is defined by the metamodel schema; this file mirrors it and narrows only the record id to this repo's org-wide namespace form (check_id_system.py IDM-001: stakeholders:stakeholder-<slug>-<hash6>) and to closed-world properties. Do not widen a normative enum here to accept a value the metamodel does not define: fix the record instead. A catalogue that diverges from the metamodel is a second source of truth.",
   "type": "object",
+  "additionalProperties": false,
   "required": ["id", "name", "type", "version", "stakeholder_type"],
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^[a-z][a-z0-9-]*:[a-z0-9-]+$"
+      "pattern": "^stakeholders:stakeholder-[a-z0-9-]+-[a-z2-9]{6}$",
+      "description": "OpenDEAM id, narrowed to this repo's org-wide namespace form (IDM-001; hash6 over the 31-symbol entropy alphabet)."
     },
-    "type": { "type": "string", "const": "Stakeholder" },
-    "name": { "type": "string", "minLength": 1, "maxLength": 200 },
-    "description": { "type": "string", "maxLength": 2000 },
-    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "type": {
+      "type": "string",
+      "const": "Stakeholder"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "lifecycle_status": {
+      "type": "string",
+      "enum": ["proposed", "planned", "active", "deprecated", "retired"],
+      "description": "CR-3R: lifecycle state from metamodel/vocabularies/lifecycle.yaml. Canonical records carry it (CST-004)."
+    },
+    "external_references": {
+      "type": "array",
+      "description": "CR-3P: identifiers in external systems. Never a substitute for the OpenDEA id (E004).",
+      "items": {
+        "type": "object",
+        "required": ["system", "identifier"],
+        "properties": {
+          "system": { "type": "string" },
+          "identifier": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
     "stakeholder_type": {
       "type": "string",
-      "enum": ["customer", "partner", "supplier", "regulator", "investor", "community", "board"]
+      "enum": ["customer", "partner", "supplier", "regulator", "investor", "community", "board"],
+      "description": "The relationship class the stakeholder holds with the enterprise. Open set in the metamodel — new types are added there first, never widened locally."
     },
-    "relationship_direction": {
-      "type": "string",
-      "enum": ["inbound", "outbound", "bidirectional", "governance"]
-    },
-    "primary_contact": { "type": "string" },
-    "external_identifiers": {
-      "type": "object",
-      "additionalProperties": { "type": "string" }
+    "primary_contact": {
+      "type": "string"
     },
     "tags": {
       "type": "array",
@@ -33,8 +62,14 @@
     },
     "relationships": {
       "type": "array",
-      "items": { "$ref": "https://technehub-labs.github.io/dea-metamodel/schemas/relationships/relationship-instance.json" }
+      "description": "Typed relationship instances asserted by this record (metamodel relationship-instance contract; vendored locally as relationship-instance.schema.json).",
+      "items": {
+        "$ref": "relationship-instance.schema.json"
+      }
     },
-    "metadata": { "type": "object" }
+    "metadata": {
+      "type": "object",
+      "description": "Free-form provenance/governance metadata (metamodel entity.json metadata, narrowed to object shape)."
+    }
   }
 }

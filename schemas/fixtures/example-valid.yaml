@@ -1,0 +1,21 @@
+# Valid fixture: exercises the normative field set (metamodel v1.0.0
+# stakeholder.json) and one typed relationship instance. Illustrative ids
+# only — not an admitted record.
+id: stakeholders:stakeholder-example-record-a2b4c6
+type: Stakeholder
+name: Example Stakeholder
+description: 'Fixture: an illustrative stakeholder record demonstrating the canonical shape; not admitted.'
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: partner
+external_references:
+  - system: example-registry
+    identifier: example-001
+tags:
+  - fixture
+relationships:
+  - source_id: stakeholders:stakeholder-example-record-a2b4c6
+    target_id: dea:example-target-record
+    relationship_type: serves
+    direction: source-to-target
+    rationale: 'Fixture: illustrative typed assertion.'

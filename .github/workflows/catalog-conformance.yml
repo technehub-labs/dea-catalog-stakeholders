@@ -6,7 +6,7 @@ name: catalog-conformance
 # dea-metaframework fetch (per the process catalog's STRUCT-02 pattern).
 #
 # Companion to validate-allocation.yml (which pins the consumer
-# allocation declaration against OpenDEAM v0.2.1) and validate.yml
+# allocation declaration against OpenDEAM v0.9.0) and validate.yml
 # (which validates Stakeholder entries against schemas/entity.schema.json
 # once Phase 2 content population begins).
 
@@ -59,6 +59,12 @@ jobs:
 
       - name: Validate CATALOG.yaml (CR-CATALOG-STRUCT-01 §8 gate)
         run: python scripts/check_catalog_index.py --strict --schema catalog-index-schema/catalog-index-schema.json
+
+      - name: Pointer consistency gate (CR-CATALOG-STRUCT-12)
+        run: python scripts/check_pointer.py
+
+      - name: Record schema projection + validation gate (CR-CATALOG-STRUCT-12)
+        run: python scripts/check_schema.py
 
       - name: Run cross-repo conformance suite (CR-CATALOG-STRUCT-01 §11)
         run: |
