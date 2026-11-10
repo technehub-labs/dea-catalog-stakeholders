@@ -282,7 +282,7 @@ def main() -> int:
         findings = _check_idm008_records(changed, live_ids)
         findings += _check_idm008_docs(changed)
         if args.report_path:
-            _write_report(Path(args.report_path), base_ref, changed, findings)
+            _write_report(Path(args.report_path), args.base_ref, changed, findings)
         blocking = [f for f in findings if not f.get("advisory", False)]
         verdict = "NON-CONFORMANT" if blocking else "CONFORMANT"
         print(f"ID System coherence (IDM-008, base {args.base_ref}): {verdict}")
