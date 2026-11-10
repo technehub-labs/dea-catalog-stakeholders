@@ -4,8 +4,8 @@ catalog:
     candidates: 0
     canonical: 11
     entities: 11
-    open_change_requests: 0
-    research_files: 0
+    open_change_requests: 1
+    research_files: 44
     retired: 0
   cross_cutting:
     change_requests: change-requests/
@@ -26,10 +26,10 @@ catalog:
   - candidate_count: 0
     canonical_count: 1
     id: stakeholders:stakeholder-california-privacy-protection-agency-mtxygk
-    last_modified: '2026-11-08'
+    last_modified: '2026-11-10'
     lifecycle_status: active
     path: entities/v1-alpha/california-privacy-protection-agency-mtxygk/stakeholders-stakeholder-california-privacy-protection-agency-mtxygk.yaml
-    research_count: 0
+    research_count: 4
     retired_count: 0
     state: canonical
     type: Stakeholder
@@ -37,10 +37,10 @@ catalog:
   - candidate_count: 0
     canonical_count: 1
     id: stakeholders:stakeholder-eu-data-protection-authorities-rs8g75
-    last_modified: '2026-11-08'
+    last_modified: '2026-11-10'
     lifecycle_status: active
     path: entities/v1-alpha/eu-data-protection-authorities-rs8g75/stakeholders-stakeholder-eu-data-protection-authorities-rs8g75.yaml
-    research_count: 0
+    research_count: 4
     retired_count: 0
     state: canonical
     type: Stakeholder
@@ -48,10 +48,10 @@ catalog:
   - candidate_count: 0
     canonical_count: 1
     id: stakeholders:stakeholder-eu-trade-secret-authorities-zwf29g
-    last_modified: '2026-11-08'
+    last_modified: '2026-11-10'
     lifecycle_status: active
     path: entities/v1-alpha/eu-trade-secret-authorities-zwf29g/stakeholders-stakeholder-eu-trade-secret-authorities-zwf29g.yaml
-    research_count: 0
+    research_count: 4
     retired_count: 0
     state: canonical
     type: Stakeholder
@@ -59,10 +59,10 @@ catalog:
   - candidate_count: 0
     canonical_count: 1
     id: stakeholders:stakeholder-github-inc-msn3q2
-    last_modified: '2026-11-08'
+    last_modified: '2026-11-10'
     lifecycle_status: active
     path: entities/v1-alpha/github-inc-msn3q2/stakeholders-stakeholder-github-inc-msn3q2.yaml
-    research_count: 0
+    research_count: 4
     retired_count: 0
     state: canonical
     type: Stakeholder
@@ -70,10 +70,10 @@ catalog:
   - candidate_count: 0
     canonical_count: 1
     id: stakeholders:stakeholder-governing-board-hgr5us
-    last_modified: '2026-11-08'
+    last_modified: '2026-11-10'
     lifecycle_status: active
     path: entities/v1-alpha/governing-board-hgr5us/stakeholders-stakeholder-governing-board-hgr5us.yaml
-    research_count: 0
+    research_count: 4
     retired_count: 0
     state: canonical
     type: Stakeholder
@@ -81,10 +81,10 @@ catalog:
   - candidate_count: 0
     canonical_count: 1
     id: stakeholders:stakeholder-hhs-office-for-civil-rights-hf7e8x
-    last_modified: '2026-11-08'
+    last_modified: '2026-11-10'
     lifecycle_status: active
     path: entities/v1-alpha/hhs-office-for-civil-rights-hf7e8x/stakeholders-stakeholder-hhs-office-for-civil-rights-hf7e8x.yaml
-    research_count: 0
+    research_count: 4
     retired_count: 0
     state: canonical
     type: Stakeholder
@@ -92,10 +92,10 @@ catalog:
   - candidate_count: 0
     canonical_count: 1
     id: stakeholders:stakeholder-oss-community-nf74fy
-    last_modified: '2026-11-08'
+    last_modified: '2026-11-10'
     lifecycle_status: active
     path: entities/v1-alpha/oss-community-nf74fy/stakeholders-stakeholder-oss-community-nf74fy.yaml
-    research_count: 0
+    research_count: 4
     retired_count: 0
     state: canonical
     type: Stakeholder
@@ -103,10 +103,10 @@ catalog:
   - candidate_count: 0
     canonical_count: 1
     id: stakeholders:stakeholder-pci-security-standards-council-ek8khf
-    last_modified: '2026-11-08'
+    last_modified: '2026-11-10'
     lifecycle_status: active
     path: entities/v1-alpha/pci-security-standards-council-ek8khf/stakeholders-stakeholder-pci-security-standards-council-ek8khf.yaml
-    research_count: 0
+    research_count: 4
     retired_count: 0
     state: canonical
     type: Stakeholder
@@ -114,10 +114,10 @@ catalog:
   - candidate_count: 0
     canonical_count: 1
     id: stakeholders:stakeholder-uk-information-commissioner-5e64th
-    last_modified: '2026-11-08'
+    last_modified: '2026-11-10'
     lifecycle_status: active
     path: entities/v1-alpha/uk-information-commissioner-5e64th/stakeholders-stakeholder-uk-information-commissioner-5e64th.yaml
-    research_count: 0
+    research_count: 4
     retired_count: 0
     state: canonical
     type: Stakeholder
@@ -125,10 +125,10 @@ catalog:
   - candidate_count: 0
     canonical_count: 1
     id: stakeholders:stakeholder-us-department-of-justice-nqbwya
-    last_modified: '2026-11-08'
+    last_modified: '2026-11-10'
     lifecycle_status: active
     path: entities/v1-alpha/us-department-of-justice-nqbwya/stakeholders-stakeholder-us-department-of-justice-nqbwya.yaml
-    research_count: 0
+    research_count: 4
     retired_count: 0
     state: canonical
     type: Stakeholder
@@ -136,10 +136,10 @@ catalog:
   - candidate_count: 0
     canonical_count: 1
     id: stakeholders:stakeholder-us-securities-and-exchange-commission-ucaru6
-    last_modified: '2026-11-08'
+    last_modified: '2026-11-10'
     lifecycle_status: active
     path: entities/v1-alpha/us-securities-and-exchange-commission-ucaru6/stakeholders-stakeholder-us-securities-and-exchange-commission-ucaru6.yaml
-    research_count: 0
+    research_count: 4
     retired_count: 0
     state: canonical
     type: Stakeholder
@@ -148,40 +148,84 @@ catalog:
   metamodel_version: 1.0.0
   name: Stakeholders
   owner: TechNeHub Labs
-  repository: https://github.com/technehub-labs/dea-catalog-stakeholders.git
+  repository: ''
   research_registers:
   - entity_id: stakeholders:stakeholder-california-privacy-protection-agency-mtxygk
-    files: []
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
     path: entities/v1-alpha/california-privacy-protection-agency-mtxygk/research/
   - entity_id: stakeholders:stakeholder-eu-data-protection-authorities-rs8g75
-    files: []
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
     path: entities/v1-alpha/eu-data-protection-authorities-rs8g75/research/
   - entity_id: stakeholders:stakeholder-eu-trade-secret-authorities-zwf29g
-    files: []
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
     path: entities/v1-alpha/eu-trade-secret-authorities-zwf29g/research/
   - entity_id: stakeholders:stakeholder-github-inc-msn3q2
-    files: []
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
     path: entities/v1-alpha/github-inc-msn3q2/research/
   - entity_id: stakeholders:stakeholder-governing-board-hgr5us
-    files: []
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
     path: entities/v1-alpha/governing-board-hgr5us/research/
   - entity_id: stakeholders:stakeholder-hhs-office-for-civil-rights-hf7e8x
-    files: []
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
     path: entities/v1-alpha/hhs-office-for-civil-rights-hf7e8x/research/
   - entity_id: stakeholders:stakeholder-oss-community-nf74fy
-    files: []
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
     path: entities/v1-alpha/oss-community-nf74fy/research/
   - entity_id: stakeholders:stakeholder-pci-security-standards-council-ek8khf
-    files: []
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
     path: entities/v1-alpha/pci-security-standards-council-ek8khf/research/
   - entity_id: stakeholders:stakeholder-uk-information-commissioner-5e64th
-    files: []
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
     path: entities/v1-alpha/uk-information-commissioner-5e64th/research/
   - entity_id: stakeholders:stakeholder-us-department-of-justice-nqbwya
-    files: []
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
     path: entities/v1-alpha/us-department-of-justice-nqbwya/research/
   - entity_id: stakeholders:stakeholder-us-securities-and-exchange-commission-ucaru6
-    files: []
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
     path: entities/v1-alpha/us-securities-and-exchange-commission-ucaru6/research/
   status: active
   version: 0.1.0

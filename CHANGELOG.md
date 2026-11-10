@@ -6,6 +6,10 @@ repository is governed by change requests (`change-requests/`).
 
 ## [Unreleased]
 
+### CR-CATALOG-STRUCT-15: Evidence-Chain Dossiers for the Canonical Tranche
+
+The catalog's first content extension since the tranche: every canonical record subtree gains a `research/` dossier (44 files) — the exhaustive `evidence-chain.md` (admission evidence + typified corpus rows with stable `E-####` ids + supporting evidence + honest notes), `stakeholder-profile.md` (defining the stakeholder: definition, mandate and goals, what they do, engagement with the enterprise), and `correlations.md` (related entities across the fleet: regulations, capabilities, processes, services, actors — every target a live sibling record with its state and basis, deferred entries explicit; documentation-grade only, ES-003 untouched). Two catalog-level artifacts land with it: `docs/EVIDENCE-STANDARD.md` (the dossier contract) and `classifications/stakeholder-role-taxonomy.md` (the controlled vocabulary of 23 jurisdiction-free role classes carrying the full typified corpus — 133 evidence rows with URLs, honest where no single URL exists). No records, schema, relationship types, or gates change; the record YAMLs are byte-identical to main. `CATALOG.yaml`: per-entity `research_count: 4`, `research_files: 44`. Carrier: `change-requests/CR-CATALOG-STRUCT-15-evidence-chain-dossiers.md`.
+
 ### README truth pass + CR-CATALOG-STRUCT-14 status close
 
 Housekeeping docs pass following the repo's standing landing discipline (the CR-CATALOG-STRUCT-10 status-close precedent). CR-CATALOG-STRUCT-14's Status closes to `Merged (PR #17)`; with no other open carriers, `CATALOG.yaml`'s `open_change_requests` reaches **0**. The README — last truth-swept at STRUCT-10 when the pointer still read v0.2.1 — now states the catalog's actual posture: metamodel v1.0.0 / OpenDEAM v0.9.0 allocation pin, **active and populated** with 11 canonical records and pointers to the FOUNDATIONS/RECORD-STANDARD/candidate-register contract docs, and the structure tree gains `docs/` + `catalog-research/` (no more "Phase 2" placeholders for a tree that holds records).
