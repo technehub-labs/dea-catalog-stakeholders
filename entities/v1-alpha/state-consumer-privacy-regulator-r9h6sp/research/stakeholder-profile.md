@@ -9,7 +9,6 @@
 ## Definition
 
 The state or provincial authority holding rulemaking and enforcement powers under a subnational consumer-privacy statute (e.g. the CCPA as amended by the CPRA, the Colorado Privacy Act, the TDPSA, the VCDPA), over the enterprise's jurisdiction-facing processing. Role record: the capacity is common across governed subnational territories; the state agencies and attorneys general are instance evidence.
-
 The record's normative description (verbatim): *The state or provincial authority holding rulemaking and enforcement powers under a subnational consumer-privacy statute (e.g. the CCPA as amended by the CPRA, the Colorado Privacy Act, the TDPSA, the VCDPA), over the enterprise's jurisdiction-facing processing. Role record: the capacity is common across governed subnational territories; the state agencies and attorneys general are instance evidence. Role-class record (CR-CATALOG-STRUCT-16): the named parties that hold this capacity are instance evidence, never the record identity; for this enterprise the engaged instance is the California Privacy Protection Agency and the California Attorney General.*
 
 ## Mandate and goals
@@ -37,5 +36,5 @@ The enterprise's public processing surfaces can engage CCPA/CPRA obligations whe
 ## Retired party record (engaged-instance history)
 
 - `stakeholders:stakeholder-california-privacy-protection-agency-mtxygk` — retired by CR-CATALOG-STRUCT-16, superseded by this record; its
-  dossier remains at `entities/v1-alpha/california-privacy-protection-agency-mtxygk/research/` as the
+  dossier remains at `entities/v1-alpha/retired/california-privacy-protection-agency-mtxygk/research/` as the
   engaged-instance history.

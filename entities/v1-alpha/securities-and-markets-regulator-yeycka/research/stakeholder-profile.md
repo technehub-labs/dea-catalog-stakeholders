@@ -9,7 +9,6 @@
 ## Definition
 
 The authority enforcing securities and markets law, including insider-trading prohibitions anchored in the regulations catalog, engaging the enterprise wherever securities-law duties attach. Role record, typified by >=3 logged URL evidence instances across jurisdictions; each named authority is instance evidence.
-
 The record's normative description (verbatim): *The authority enforcing securities and markets law, including insider-trading prohibitions anchored in the regulations catalog, engaging the enterprise wherever securities-law duties attach. Role record, typified by >=3 logged URL evidence instances across jurisdictions; each named authority is instance evidence. Role-class record (CR-CATALOG-STRUCT-16): the named parties that hold this capacity are instance evidence, never the record identity; for this enterprise the engaged instance is the US Securities and Exchange Commission (SEC).*
 
 ## Mandate and goals
@@ -38,5 +37,5 @@ The enterprise's financial-stewardship and investment activities are conducted t
 ## Retired party record (engaged-instance history)
 
 - `stakeholders:stakeholder-us-securities-and-exchange-commission-ucaru6` — retired by CR-CATALOG-STRUCT-16, superseded by this record; its
-  dossier remains at `entities/v1-alpha/us-securities-and-exchange-commission-ucaru6/research/` as the
+  dossier remains at `entities/v1-alpha/retired/us-securities-and-exchange-commission-ucaru6/research/` as the
   engaged-instance history.

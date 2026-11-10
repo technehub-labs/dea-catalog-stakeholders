@@ -9,7 +9,6 @@
 ## Definition
 
 The authority or court enforcing trade-secret protection statutes in national and supranational regimes (the Defend Trade Secrets Act in the US, Directive (EU) 2016/943 in member states, the Unfair Competition Prevention Act in Japan). Role record: the trade-secret enforcement capacity is common across governed territories; the named authorities and courts are instance evidence.
-
 The record's normative description (verbatim): *The authority or court enforcing trade-secret protection statutes in national and supranational regimes (the Defend Trade Secrets Act in the US, Directive (EU) 2016/943 in member states, the Unfair Competition Prevention Act in Japan). Role record: the trade-secret enforcement capacity is common across governed territories; the named authorities and courts are instance evidence. Role-class record (CR-CATALOG-STRUCT-16): the named parties that hold this capacity are instance evidence, never the record identity; for this enterprise the engaged instance is the EU member-state competent authorities and courts.*
 
 ## Mandate and goals
@@ -36,5 +35,5 @@ The enterprise's undisclosed know-how (architecture models, research) is protect
 ## Retired party record (engaged-instance history)
 
 - `stakeholders:stakeholder-eu-trade-secret-authorities-zwf29g` — retired by CR-CATALOG-STRUCT-16, superseded by this record; its
-  dossier remains at `entities/v1-alpha/eu-trade-secret-authorities-zwf29g/research/` as the
+  dossier remains at `entities/v1-alpha/retired/eu-trade-secret-authorities-zwf29g/research/` as the
   engaged-instance history.

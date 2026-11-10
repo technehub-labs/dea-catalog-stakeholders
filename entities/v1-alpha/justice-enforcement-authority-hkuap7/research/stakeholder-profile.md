@@ -9,7 +9,6 @@
 ## Definition
 
 The justice department or equivalent enforcement authority prosecuting civil and criminal violations of national statute in national courts (including the Defend Trade Secrets Act (2016) in the US). Role record: the justice-enforcement capacity is common across governed territories; the named departments are instance evidence.
-
 The record's normative description (verbatim): *The justice department or equivalent enforcement authority prosecuting civil and criminal violations of national statute in national courts (including the Defend Trade Secrets Act (2016) in the US). Role record: the justice-enforcement capacity is common across governed territories; the named departments are instance evidence. Role-class record (CR-CATALOG-STRUCT-16): the named parties that hold this capacity are instance evidence, never the record identity; for this enterprise the engaged instance is the US Department of Justice (DOJ).*
 
 ## Mandate and goals
@@ -37,5 +36,5 @@ The enterprise's undisclosed know-how is protected federally under the DTSA regi
 ## Retired party record (engaged-instance history)
 
 - `stakeholders:stakeholder-us-department-of-justice-nqbwya` — retired by CR-CATALOG-STRUCT-16, superseded by this record; its
-  dossier remains at `entities/v1-alpha/us-department-of-justice-nqbwya/research/` as the
+  dossier remains at `entities/v1-alpha/retired/us-department-of-justice-nqbwya/research/` as the
   engaged-instance history.

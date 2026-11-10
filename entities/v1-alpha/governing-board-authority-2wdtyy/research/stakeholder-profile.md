@@ -9,7 +9,6 @@
 ## Definition
 
 The governing-board capacity directing the enterprise: organization ownership, change-request ratification and release decisions. Single-incumbent role by organization design, so the named-party typification threshold is not applicable; the officeholder is instance evidence, and any performer capacity is out of scope here (Actors catalog boundary, docs/FOUNDATIONS.md s1).
-
 The record's normative description (verbatim): *The governing-board capacity directing the enterprise: organization ownership, change-request ratification and release decisions. Single-incumbent role by organization design, so the named-party typification threshold is not applicable; the officeholder is instance evidence, and any performer capacity is out of scope here (Actors catalog boundary, docs/FOUNDATIONS.md s1). Role-class record (CR-CATALOG-STRUCT-16): the named parties that hold this capacity are instance evidence, never the record identity; for this enterprise the engaged instance is Emmanuel A. Otchere, sole directing authority.*
 
 ## Mandate and goals
@@ -38,5 +37,5 @@ Every CR in this repo lands under the board's ratification; the governing-board 
 ## Retired party record (engaged-instance history)
 
 - `stakeholders:stakeholder-governing-board-hgr5us` — retired by CR-CATALOG-STRUCT-16, superseded by this record; its
-  dossier remains at `entities/v1-alpha/governing-board-hgr5us/research/` as the
+  dossier remains at `entities/v1-alpha/retired/governing-board-hgr5us/research/` as the
   engaged-instance history.

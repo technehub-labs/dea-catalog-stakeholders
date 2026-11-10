@@ -9,7 +9,6 @@
 ## Definition
 
 The external platform supplier hosting the enterprise's source control, CI runners, code review and organization access control. Role record, typified by >=3 logged URL evidence instances of the platform-supplier class; the named vendors are instance evidence (engagement asserted only where in-repo evidence exists).
-
 The record's normative description (verbatim): *The external platform supplier hosting the enterprise's source control, CI runners, code review and organization access control. Role record, typified by >=3 logged URL evidence instances of the platform-supplier class; the named vendors are instance evidence (engagement asserted only where in-repo evidence exists). Role-class record (CR-CATALOG-STRUCT-16): the named parties that hold this capacity are instance evidence, never the record identity; for this enterprise the engaged instance is GitHub, Inc. (host of every repository in the fleet).*
 
 ## Mandate and goals
@@ -39,5 +38,5 @@ The enterprise consumes the platform as a supplier: every repository, every CI r
 ## Retired party record (engaged-instance history)
 
 - `stakeholders:stakeholder-github-inc-msn3q2` — retired by CR-CATALOG-STRUCT-16, superseded by this record; its
-  dossier remains at `entities/v1-alpha/github-inc-msn3q2/research/` as the
+  dossier remains at `entities/v1-alpha/retired/github-inc-msn3q2/research/` as the
   engaged-instance history.

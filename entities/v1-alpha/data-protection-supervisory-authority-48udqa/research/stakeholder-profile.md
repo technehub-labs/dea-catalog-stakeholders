@@ -9,7 +9,6 @@
 ## Definition
 
 The supervisory authority enforcing a national data-protection regime (UK GDPR, FADP, PIPEDA, Privacy Act 1988, LGPD, PDPO, APPI, PDPA, NZ Privacy Act 2020, PIPL, PIPA and equivalents) with enforcement powers over the enterprise's jurisdiction-facing processing. Role record: the capacity is common across governed territories; each named authority is instance evidence.
-
 The record's normative description (verbatim): *The supervisory authority enforcing a national data-protection regime (UK GDPR, FADP, PIPEDA, Privacy Act 1988, LGPD, PDPO, APPI, PDPA, NZ Privacy Act 2020, PIPL, PIPA and equivalents) with enforcement powers over the enterprise's jurisdiction-facing processing. Role record: the capacity is common across governed territories; each named authority is instance evidence. Role-class record (CR-CATALOG-STRUCT-16): the named parties that hold this capacity are instance evidence, never the record identity; for this enterprise the engaged instance is the UK Information Commissioner's Office (ICO).*
 
 ## Mandate and goals
@@ -38,5 +37,5 @@ The enterprise's public processing surfaces (repositories, community site) engag
 ## Retired party record (engaged-instance history)
 
 - `stakeholders:stakeholder-uk-information-commissioner-5e64th` — retired by CR-CATALOG-STRUCT-16, superseded by this record; its
-  dossier remains at `entities/v1-alpha/uk-information-commissioner-5e64th/research/` as the
+  dossier remains at `entities/v1-alpha/retired/uk-information-commissioner-5e64th/research/` as the
   engaged-instance history.

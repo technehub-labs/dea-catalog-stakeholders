@@ -63,9 +63,9 @@ logged URL instance rows, or the two by-design exceptions: the collective
 community capacity and the single-incumbent board capacity) and (b) the
 instance that actually engages the enterprise is named in the record's
 evidence chain. Named parties and geographies live only as instance evidence
-rows; the 11 party-form records of the first tranche are retired in place
-(`lifecycle_status: retired`, superseded-by references) as the engaged-instance
-history.
+rows; the 11 party-form records of the first tranche are retired and grouped
+under `entities/v1-alpha/retired/` (CR-CATALOG-STRUCT-17; `lifecycle_status:
+retired`, superseded-by references) as the engaged-instance history.
 
 ## 3. Id minting convention
 
@@ -137,13 +137,18 @@ The admission workflow:
    the final commit action), IDM-008 PR coherence.
 5. Deprecation/retirement follows the metamodel lifecycle vocabulary;
    retired records are preserved, never deleted (BC-09 §8 precedent), and
-   their ids stay assign-once (§3). Two shapes (CR-CATALOG-STRUCT-16): a
-   record whose subtree retains a live canonical successor moves under the
-   subtree's `retired/`; a record whose subtree holds no live successor is
-   retired in place at the subtree root (`lifecycle_status: retired`,
-   version bumped, a `superseded-by` external reference) so its id, dossier
-   and history stay first-class in the tree and the index (state:
-   `retired`).
+   their ids stay assign-once (§3). Shapes (CR-CATALOG-STRUCT-16,
+   CR-CATALOG-STRUCT-17): a record whose subtree retains a live canonical
+   successor moves under the subtree's `retired/`; a fully-retired record
+   whose subtree holds no live successor moves under the top-level
+   `entities/v1-alpha/retired/` grouping (entity-storage-layout §3.2,
+   enabled upstream by metaframework CR-CATALOG-STRUCT-12) with
+   `lifecycle_status: retired`, version bumped, and a `superseded-by`
+   external reference, so its id, dossier and history stay first-class in
+   the index (state: `retired`) while the tree visually separates canonical
+   records from history. The interim retired-in-place shape of
+   CR-CATALOG-STRUCT-16 is superseded by the grouping; no record id, file
+   name, or dossier content changes in a move.
 
 ## 6. Docs and gates map
 

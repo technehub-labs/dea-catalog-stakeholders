@@ -9,7 +9,6 @@
 ## Definition
 
 The authority regulating the processing of health-related personal data (e.g. the HIPAA Privacy and Security Rules in the US, PHIPA health-information custodians in Ontario, HIQA's health-information framework in Ireland), with enforcement powers over the enterprise's health-data-touching processing. Role record: the health-data regulatory capacity is common across governed territories; the named offices are instance evidence.
-
 The record's normative description (verbatim): *The authority regulating the processing of health-related personal data (e.g. the HIPAA Privacy and Security Rules in the US, PHIPA health-information custodians in Ontario, HIQA's health-information framework in Ireland), with enforcement powers over the enterprise's health-data-touching processing. Role record: the health-data regulatory capacity is common across governed territories; the named offices are instance evidence. Role-class record (CR-CATALOG-STRUCT-16): the named parties that hold this capacity are instance evidence, never the record identity; for this enterprise the engaged instance is the US HHS Office for Civil Rights (OCR).*
 
 ## Mandate and goals
@@ -37,5 +36,5 @@ Wherever the enterprise's activities touch protected health information, the HIP
 ## Retired party record (engaged-instance history)
 
 - `stakeholders:stakeholder-hhs-office-for-civil-rights-hf7e8x` — retired by CR-CATALOG-STRUCT-16, superseded by this record; its
-  dossier remains at `entities/v1-alpha/hhs-office-for-civil-rights-hf7e8x/research/` as the
+  dossier remains at `entities/v1-alpha/retired/hhs-office-for-civil-rights-hf7e8x/research/` as the
   engaged-instance history.
