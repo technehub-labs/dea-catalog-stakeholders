@@ -9,7 +9,6 @@
 ## Definition
 
 The community of external licensees and consumers of the enterprise's open-source corpus, affected by its licensing and publication decisions and distinct from internal performers (Actors catalog boundary). Collective-capacity role: the community is the evidence-bearing class itself, so the named-party typification threshold is not applicable; corpus artifacts log the evidence.
-
 The record's normative description (verbatim): *The community of external licensees and consumers of the enterprise's open-source corpus, affected by its licensing and publication decisions and distinct from internal performers (Actors catalog boundary). Collective-capacity role: the community is the evidence-bearing class itself, so the named-party typification threshold is not applicable; corpus artifacts log the evidence. Role-class record (CR-CATALOG-STRUCT-16): the named parties that hold this capacity are instance evidence, never the record identity; for this enterprise the engaged instance is the TechNeHub Labs open-source community (licensees and consumers of the Apache-2.0-licensed corpus).*
 
 ## Mandate and goals
@@ -38,5 +37,5 @@ The enterprise publishes its entire catalog fleet to this community under Apache
 ## Retired party record (engaged-instance history)
 
 - `stakeholders:stakeholder-oss-community-nf74fy` — retired by CR-CATALOG-STRUCT-16, superseded by this record; its
-  dossier remains at `entities/v1-alpha/oss-community-nf74fy/research/` as the
+  dossier remains at `entities/v1-alpha/retired/oss-community-nf74fy/research/` as the
   engaged-instance history.

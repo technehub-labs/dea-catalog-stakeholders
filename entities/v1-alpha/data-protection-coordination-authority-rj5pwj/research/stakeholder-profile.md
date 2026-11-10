@@ -9,7 +9,6 @@
 ## Definition
 
 The body coordinating or supervising data-protection enforcement above the single-jurisdiction level (a coordination board of national authorities, an institutional supervisor, or the global assembly of privacy regulators), engaging the enterprise through consistent-application decisions and cross-border enforcement coordination. Role record, typified by >=3 logged URL evidence instances; each named body is instance evidence.
-
 The record's normative description (verbatim): *The body coordinating or supervising data-protection enforcement above the single-jurisdiction level (a coordination board of national authorities, an institutional supervisor, or the global assembly of privacy regulators), engaging the enterprise through consistent-application decisions and cross-border enforcement coordination. Role record, typified by >=3 logged URL evidence instances; each named body is instance evidence. Role-class record (CR-CATALOG-STRUCT-16): the named parties that hold this capacity are instance evidence, never the record identity; for this enterprise the engaged instance is the European Data Protection Board with the national supervisory authorities it coordinates.*
 
 ## Mandate and goals
@@ -38,5 +37,5 @@ The enterprise's public repositories and community site process personal data in
 ## Retired party record (engaged-instance history)
 
 - `stakeholders:stakeholder-eu-data-protection-authorities-rs8g75` — retired by CR-CATALOG-STRUCT-16, superseded by this record; its
-  dossier remains at `entities/v1-alpha/eu-data-protection-authorities-rs8g75/research/` as the
+  dossier remains at `entities/v1-alpha/retired/eu-data-protection-authorities-rs8g75/research/` as the
   engaged-instance history.

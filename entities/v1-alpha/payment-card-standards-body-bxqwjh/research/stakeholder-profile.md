@@ -9,7 +9,6 @@
 ## Definition
 
 The industry standards body founded or owned by the card networks that maintains and publishes payment-card security and interoperability standards, governing the standards' content while compliance is enforced contractually through the networks' acceptance regimes. Role record, typified by >=3 logged URL evidence instances; each named body is instance evidence.
-
 The record's normative description (verbatim): *The industry standards body founded or owned by the card networks that maintains and publishes payment-card security and interoperability standards, governing the standards' content while compliance is enforced contractually through the networks' acceptance regimes. Role record, typified by >=3 logged URL evidence instances; each named body is instance evidence. Role-class record (CR-CATALOG-STRUCT-16): the named parties that hold this capacity are instance evidence, never the record identity; for this enterprise the engaged instance is the PCI Security Standards Council (PCI SSC).*
 
 ## Mandate and goals
@@ -37,5 +36,5 @@ The enterprise treats PCI DSS as its contractual payment-security regime (the si
 ## Retired party record (engaged-instance history)
 
 - `stakeholders:stakeholder-pci-security-standards-council-ek8khf` — retired by CR-CATALOG-STRUCT-16, superseded by this record; its
-  dossier remains at `entities/v1-alpha/pci-security-standards-council-ek8khf/research/` as the
+  dossier remains at `entities/v1-alpha/retired/pci-security-standards-council-ek8khf/research/` as the
   engaged-instance history.

@@ -9,7 +9,6 @@
 ## Definition
 
 The supervisory authority competent for the GDPR within its jurisdiction, holding investigation, corrective and enforcement powers over the enterprise's jurisdiction-facing processing. Role record: the GDPR supervisory capacity is common across every GDPR-governed territory; the competent authority of each is carried as instance evidence, never as the record identity.
-
 The record's normative description (verbatim): *The supervisory authority competent for the GDPR within its jurisdiction, holding investigation, corrective and enforcement powers over the enterprise's jurisdiction-facing processing. Role record: the GDPR supervisory capacity is common across every GDPR-governed territory; the competent authority of each is carried as instance evidence, never as the record identity. Role-class record (CR-CATALOG-STRUCT-16): the named parties that hold this capacity are instance evidence, never the record identity; for this enterprise the engaged instance is the EDPB-coordinated collective of national supervisory authorities.*
 
 ## Mandate and goals
@@ -38,5 +37,5 @@ The enterprise's public repositories and community site process personal data in
 ## Retired party record (engaged-instance history)
 
 - `stakeholders:stakeholder-eu-data-protection-authorities-rs8g75` — retired by CR-CATALOG-STRUCT-16, superseded by this record; its
-  dossier remains at `entities/v1-alpha/eu-data-protection-authorities-rs8g75/research/` as the
+  dossier remains at `entities/v1-alpha/retired/eu-data-protection-authorities-rs8g75/research/` as the
   engaged-instance history.
