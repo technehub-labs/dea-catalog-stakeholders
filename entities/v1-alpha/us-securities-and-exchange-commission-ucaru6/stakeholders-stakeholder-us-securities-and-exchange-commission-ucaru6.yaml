@@ -2,23 +2,21 @@ id: stakeholders:stakeholder-us-securities-and-exchange-commission-ucaru6
 type: Stakeholder
 name: US Securities and Exchange Commission (SEC)
 description: The United States Securities and Exchange Commission, the federal regulator that enforces
-  US securities law, including the insider-trading prohibitions anchored in the regulations catalog.
-version: 1.0.0
-lifecycle_status: active
+  US securities law, including the insider-trading prohibitions anchored in the regulations catalog. Superseded
+  by the role-first record `stakeholders:stakeholder-securities-and-markets-regulator-yeycka` (CR-CATALOG-STRUCT-16);
+  this party record is retained as the engaged-instance history. Its asserted edges moved to the role
+  record (asserted through this engaged instance).
+version: 1.1.0
+lifecycle_status: retired
 stakeholder_type: regulator
 external_references:
 - system: official-website
   identifier: https://www.sec.gov
 - system: sibling-record
   identifier: dea:regulation-us-securities-insider-trading (dea-catalog-regulations)
+- system: superseded-by
+  identifier: stakeholders:stakeholder-securities-and-markets-regulator-yeycka
 tags:
 - regulator
 - securities
 - us
-relationships:
-- source_id: stakeholders:stakeholder-us-securities-and-exchange-commission-ucaru6
-  target_id: dea:regulation-us-securities-insider-trading
-  relationship_type: enforces
-  direction: source-to-target
-  rationale: The SEC enforces US securities-law insider-trading prohibitions; the sibling record anchors
-    the regime (evidence channel 2).

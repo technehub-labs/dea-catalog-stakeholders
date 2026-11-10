@@ -23,3 +23,7 @@
 - Corpus rows cross-referenced by their stable `E-####` ids from
   `classifications/stakeholder-role-taxonomy.md` (the repo-home of the typified
   evidence corpus).
+
+> CR-CATALOG-STRUCT-16: the party record this dossier grounds is retired
+> (superseded by the role-class record `stakeholders:stakeholder-source-control-and-ci-platform-supplier-cbnhwy`); this dossier is retained as
+> the engaged-instance history.
