@@ -1,0 +1,21 @@
+id: stakeholders:stakeholder-source-control-and-ci-platform-supplier-cbnhwy
+type: Stakeholder
+name: Source-control and CI platform supplier
+description: 'The external platform supplier hosting the enterprise''s source control, CI
+  runners, code review and organization access control. Role record, typified
+  by >=3 logged URL evidence instances of the platform-supplier class; the
+  named vendors are instance evidence (engagement asserted only where in-repo
+  evidence exists). Role-class record (CR-CATALOG-STRUCT-16): the named
+  parties that hold this capacity are instance evidence, never the record
+  identity; for this enterprise the engaged instance is GitHub, Inc. (host of
+  every repository in the fleet).'
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: supplier
+external_references:
+- system: github-org
+  identifier: technehub-labs
+tags:
+- supplier
+- platform
+- ci

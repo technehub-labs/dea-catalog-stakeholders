@@ -15,9 +15,16 @@
   `stakeholder_url` pointing at the named instance. Two exceptions are carried by
   design and noted per class: the collective licensee community and the
   single-incumbent governing board (canonical capacities; 3 URL evidence surfaces each).
-- Evidence rows live in exactly one home: rows for the 11 canonical parties are
+- Evidence rows live in exactly one home: rows for the canonical role classes are
   cross-referenced from (and duplicated in) their record dossiers; rows for
   market instances assert **no enterprise engagement** — they evidence a class only.
+- Canonicalization (CR-CATALOG-STRUCT-16): a class whose enterprise-engagement
+  instance is evidenced lands as a canonical role-class record
+  (`entities/v1-alpha/<role-slug>-<hash6>/`); the record id
+  (`stakeholders:stakeholder-<slug>-<hash6>`) and this file's class id
+  (`sh-role:<slug>`) stay distinct — class ids are documentation-grade, record
+  ids are entity ids. A class with typified market evidence but no engagement
+  stays documentation-only (candidate register C-005).
 - Honest zeros: no customer/partner/investor classes exist; the enum values remain
   empty by evidence, tracked as C-002..C-004 in the candidate register.
 
@@ -50,6 +57,7 @@
 - stakeholder_type: `regulator`
 - Definition: The supervisory authority competent for the GDPR within its jurisdiction, holding investigation, corrective and enforcement powers over the enterprise's jurisdiction-facing processing. Role record: the GDPR supervisory capacity is common across every GDPR-governed territory; the competent authority of each is carried as instance evidence, never as the record identity.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: `stakeholders:stakeholder-gdpr-supervisory-authority-qryy8j` (`entities/v1-alpha/gdpr-supervisory-authority-qryy8j/`; CR-CATALOG-STRUCT-16) — the class carries an evidenced enterprise-engagement instance (named in the record's evidence chain).
 - Corpus rows: 30 (30 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -90,6 +98,7 @@
 - stakeholder_type: `regulator`
 - Definition: The body coordinating or supervising data-protection enforcement above the single-jurisdiction level (a coordination board of national authorities, an institutional supervisor, or the global assembly of privacy regulators), engaging the enterprise through consistent-application decisions and cross-border enforcement coordination. Role record, typified by >=3 logged URL evidence instances; each named body is instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: `stakeholders:stakeholder-data-protection-coordination-authority-rj5pwj` (`entities/v1-alpha/data-protection-coordination-authority-rj5pwj/`; CR-CATALOG-STRUCT-16) — the class carries an evidenced enterprise-engagement instance (named in the record's evidence chain).
 - Corpus rows: 3 (3 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -103,6 +112,7 @@
 - stakeholder_type: `regulator`
 - Definition: The supervisory authority enforcing a national data-protection regime (UK GDPR, FADP, PIPEDA, Privacy Act 1988, LGPD, PDPO, APPI, PDPA, NZ Privacy Act 2020, PIPL, PIPA and equivalents) with enforcement powers over the enterprise's jurisdiction-facing processing. Role record: the capacity is common across governed territories; each named authority is instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: `stakeholders:stakeholder-data-protection-supervisory-authority-48udqa` (`entities/v1-alpha/data-protection-supervisory-authority-48udqa/`; CR-CATALOG-STRUCT-16) — the class carries an evidenced enterprise-engagement instance (named in the record's evidence chain).
 - Corpus rows: 11 (11 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -124,6 +134,7 @@
 - stakeholder_type: `regulator`
 - Definition: The data-protection authority of a provincial or sub-federal jurisdiction enforcing its own private-sector privacy statute (e.g. Canadian provincial PIPA/Law 25 regimes), with oversight of processing engaging the enterprise in that jurisdiction. Role record, typified by >=3 logged URL evidence instances; each province's authority is instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: none — typified market-instance class; no enterprise engagement is evidenced (candidate register C-005).
 - Corpus rows: 3 (3 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -137,6 +148,7 @@
 - stakeholder_type: `regulator`
 - Definition: The state or provincial authority holding rulemaking and enforcement powers under a subnational consumer-privacy statute (e.g. the CCPA as amended by the CPRA, the Colorado Privacy Act, the TDPSA, the VCDPA), over the enterprise's jurisdiction-facing processing. Role record: the capacity is common across governed subnational territories; the state agencies and attorneys general are instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: `stakeholders:stakeholder-state-consumer-privacy-regulator-r9h6sp` (`entities/v1-alpha/state-consumer-privacy-regulator-r9h6sp/`; CR-CATALOG-STRUCT-16) — the class carries an evidenced enterprise-engagement instance (named in the record's evidence chain).
 - Corpus rows: 4 (4 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -151,6 +163,7 @@
 - stakeholder_type: `regulator`
 - Definition: The authority enforcing consumer-protection and fair-trading law against unfair or deceptive practices, including data-security cases, over commercial processing that engages the enterprise's consumer-facing commerce. Role record, typified by >=3 logged URL evidence instances across jurisdictions; each named authority is instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: none — typified market-instance class; no enterprise engagement is evidenced (candidate register C-005).
 - Corpus rows: 3 (3 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -164,6 +177,7 @@
 - stakeholder_type: `regulator`
 - Definition: The authority regulating the processing of health-related personal data (e.g. the HIPAA Privacy and Security Rules in the US, PHIPA health-information custodians in Ontario, HIQA's health-information framework in Ireland), with enforcement powers over the enterprise's health-data-touching processing. Role record: the health-data regulatory capacity is common across governed territories; the named offices are instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: `stakeholders:stakeholder-health-data-regulation-authority-yfkmah` (`entities/v1-alpha/health-data-regulation-authority-yfkmah/`; CR-CATALOG-STRUCT-16) — the class carries an evidenced enterprise-engagement instance (named in the record's evidence chain).
 - Corpus rows: 3 (3 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -177,6 +191,7 @@
 - stakeholder_type: `regulator`
 - Definition: The authority enforcing securities and markets law, including insider-trading prohibitions anchored in the regulations catalog, engaging the enterprise wherever securities-law duties attach. Role record, typified by >=3 logged URL evidence instances across jurisdictions; each named authority is instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: `stakeholders:stakeholder-securities-and-markets-regulator-yeycka` (`entities/v1-alpha/securities-and-markets-regulator-yeycka/`; CR-CATALOG-STRUCT-16) — the class carries an evidenced enterprise-engagement instance (named in the record's evidence chain).
 - Corpus rows: 4 (4 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -191,6 +206,7 @@
 - stakeholder_type: `regulator`
 - Definition: The justice department or equivalent enforcement authority prosecuting civil and criminal violations of national statute in national courts (including the Defend Trade Secrets Act (2016) in the US). Role record: the justice-enforcement capacity is common across governed territories; the named departments are instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: `stakeholders:stakeholder-justice-enforcement-authority-hkuap7` (`entities/v1-alpha/justice-enforcement-authority-hkuap7/`; CR-CATALOG-STRUCT-16) — the class carries an evidenced enterprise-engagement instance (named in the record's evidence chain).
 - Corpus rows: 4 (4 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -205,6 +221,7 @@
 - stakeholder_type: `regulator`
 - Definition: The authority or court enforcing trade-secret protection statutes in national and supranational regimes (the Defend Trade Secrets Act in the US, Directive (EU) 2016/943 in member states, the Unfair Competition Prevention Act in Japan). Role record: the trade-secret enforcement capacity is common across governed territories; the named authorities and courts are instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: `stakeholders:stakeholder-trade-secret-enforcement-authority-2374nw` (`entities/v1-alpha/trade-secret-enforcement-authority-2374nw/`; CR-CATALOG-STRUCT-16) — the class carries an evidenced enterprise-engagement instance (named in the record's evidence chain).
 - Corpus rows: 4 (3 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -219,6 +236,7 @@
 - stakeholder_type: `regulator`
 - Definition: The industry standards body founded or owned by the card networks that maintains and publishes payment-card security and interoperability standards, governing the standards' content while compliance is enforced contractually through the networks' acceptance regimes. Role record, typified by >=3 logged URL evidence instances; each named body is instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: `stakeholders:stakeholder-payment-card-standards-body-bxqwjh` (`entities/v1-alpha/payment-card-standards-body-bxqwjh/`; CR-CATALOG-STRUCT-16) — the class carries an evidenced enterprise-engagement instance (named in the record's evidence chain).
 - Corpus rows: 3 (3 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -232,6 +250,7 @@
 - stakeholder_type: `regulator`
 - Definition: The technical authority for cybersecurity whose advisories, baselines and secure-software guidance shape the security posture and supply-chain expectations on the enterprise's published software. Role record: the capacity is common across governed territories; each named agency is instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: none — typified market-instance class; no enterprise engagement is evidenced (candidate register C-005).
 - Corpus rows: 7 (7 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -249,6 +268,7 @@
 - stakeholder_type: `regulator`
 - Definition: The office administering copyright, trademark and design registration and policy for the works the enterprise publishes under open-source licenses, engaged by the corpus's copyright and licensing posture. Role record, typified by >=3 logged URL evidence instances; each named office is instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: none — typified market-instance class; no enterprise engagement is evidenced (candidate register C-005).
 - Corpus rows: 4 (4 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -263,6 +283,7 @@
 - stakeholder_type: `regulator`
 - Definition: The standards body that develops and publishes the technical standards on which the enterprise's formats, protocols and security baselines rely. Role record, typified by >=3 logged URL evidence instances; each named body is instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: none — typified market-instance class; no enterprise engagement is evidenced (candidate register C-005).
 - Corpus rows: 14 (14 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -287,6 +308,7 @@
 - stakeholder_type: `regulator`
 - Definition: The standards body developing and publishing telecommunications network and service standards, whose published specifications define the interfaces and security baselines for any telecommunications-touching engagement of the enterprise. Role record, typified by >=3 logged URL evidence instances; each named organization is instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: none — typified market-instance class; no enterprise engagement is evidenced (candidate register C-005).
 - Corpus rows: 5 (5 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -302,6 +324,7 @@
 - stakeholder_type: `regulator`
 - Definition: The regulator licensing and supervising telecommunications networks, services and spectrum, whose lawful-access, interception, security and resilience obligations can engage telecommunications-touching processing of the enterprise. Role record: the capacity is common across governed territories; each named regulator is instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: none — typified market-instance class; no enterprise engagement is evidenced (candidate register C-005).
 - Corpus rows: 6 (6 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -318,6 +341,7 @@
 - stakeholder_type: `regulator`
 - Definition: The operator of a global identifier registry (Internet parameter/port registries, DNS coordination, vulnerability identifiers) on which the enterprise's networked services and security communications rely. Role record, typified by >=3 logged URL evidence instances; the named operators are instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: none — typified market-instance class; no enterprise engagement is evidenced (candidate register C-005).
 - Corpus rows: 3 (3 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -331,6 +355,7 @@
 - stakeholder_type: `community`
 - Definition: The community of external licensees and consumers of the enterprise's open-source corpus, affected by its licensing and publication decisions and distinct from internal performers (Actors catalog boundary). Collective-capacity role: the community is the evidence-bearing class itself, so the named-party typification threshold is not applicable; corpus artifacts log the evidence.
 - Typification: n/a — collective capacity (canonical; 3 URL evidence surfaces of the collective)
+- Canonical record: `stakeholders:stakeholder-open-source-licensee-community-57sarg` (`entities/v1-alpha/open-source-licensee-community-57sarg/`; CR-CATALOG-STRUCT-16) — the class carries an evidenced enterprise-engagement instance (named in the record's evidence chain).
 - Corpus rows: 3 (3 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -344,6 +369,7 @@
 - stakeholder_type: `community`
 - Definition: The nonprofit steward that authors, maintains or certifies an open-source license under which the enterprise publishes (and the license-lineage voices that define what open source means), engaged by the enterprise's licensing decisions. Role record, typified by >=3 logged URL evidence instances; the named foundations are instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: none — typified market-instance class; no enterprise engagement is evidenced (candidate register C-005).
 - Corpus rows: 6 (6 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -360,6 +386,7 @@
 - stakeholder_type: `community`
 - Definition: The foundation that hosts open-source projects, security initiatives or community programs within whose ecosystem the enterprise's corpus circulates, an affected party in the enterprise's publication and security practice. Role record, typified by >=3 logged URL evidence instances; the named foundations are instance evidence.
 - Typification: typified (>=3 URL evidence)
+- Canonical record: none — typified market-instance class; no enterprise engagement is evidenced (candidate register C-005).
 - Corpus rows: 4 (4 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -374,6 +401,7 @@
 - stakeholder_type: `supplier`
 - Definition: The external platform supplier hosting the enterprise's source control, CI runners, code review and organization access control. Role record, typified by >=3 logged URL evidence instances of the platform-supplier class; the named vendors are instance evidence (engagement asserted only where in-repo evidence exists).
 - Typification: typified (>=3 URL evidence)
+- Canonical record: `stakeholders:stakeholder-source-control-and-ci-platform-supplier-cbnhwy` (`entities/v1-alpha/source-control-and-ci-platform-supplier-cbnhwy/`; CR-CATALOG-STRUCT-16) — the class carries an evidenced enterprise-engagement instance (named in the record's evidence chain).
 - Corpus rows: 3 (3 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -387,6 +415,7 @@
 - stakeholder_type: `supplier`
 - Definition: The external registry supplier hosting the third-party packages the enterprise's toolchain installs at run time, engaged by the supply chain and its security posture. Role record, typified by >=3 logged URL evidence instances of the registry-supplier class; the named registries are instance evidence (engagement asserted only where in-repo evidence exists).
 - Typification: typified (>=3 URL evidence)
+- Canonical record: none — typified market-instance class; no enterprise engagement is evidenced (candidate register C-005).
 - Corpus rows: 3 (3 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |
@@ -400,6 +429,7 @@
 - stakeholder_type: `board`
 - Definition: The governing-board capacity directing the enterprise: organization ownership, change-request ratification and release decisions. Single-incumbent role by organization design, so the named-party typification threshold is not applicable; the officeholder is instance evidence, and any performer capacity is out of scope here (Actors catalog boundary, docs/FOUNDATIONS.md s1).
 - Typification: n/a — single-incumbent capacity (canonical; 3 URL evidence surfaces of one officeholder)
+- Canonical record: `stakeholders:stakeholder-governing-board-authority-2wdtyy` (`entities/v1-alpha/governing-board-authority-2wdtyy/`; CR-CATALOG-STRUCT-16) — the class carries an evidenced enterprise-engagement instance (named in the record's evidence chain).
 - Corpus rows: 3 (3 with a `stakeholder_url`)
 
 | evidence_id | named instance | jurisdiction | stakeholder_url |

@@ -6,7 +6,12 @@ correlations. This document is the contract for those files. The admission
 contract (evidence channels, id minting, relationship policy) remains
 [`FOUNDATIONS.md`](FOUNDATIONS.md); the record obligations remain
 [`RECORD-STANDARD.md`](RECORD-STANDARD.md); this standard extends both to the
-subtree's `research/` directory.
+subtree's `research/` directory. Since CR-CATALOG-STRUCT-16 the canonical record
+is the **role class**: the evidence chain carries the full class corpus (every
+`E-####` row of the class — engaged instances and market instances alike), the
+profile defines the capacity with the engaged instances named, and the retired
+party records of the first tranche keep their dossiers as engaged-instance
+history.
 
 ## 1. Subtree layout
 

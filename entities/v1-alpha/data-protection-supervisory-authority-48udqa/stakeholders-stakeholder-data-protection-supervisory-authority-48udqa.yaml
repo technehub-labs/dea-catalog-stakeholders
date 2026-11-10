@@ -1,0 +1,30 @@
+id: stakeholders:stakeholder-data-protection-supervisory-authority-48udqa
+type: Stakeholder
+name: Data-protection supervisory authority
+description: 'The supervisory authority enforcing a national data-protection regime (UK
+  GDPR, FADP, PIPEDA, Privacy Act 1988, LGPD, PDPO, APPI, PDPA, NZ Privacy
+  Act 2020, PIPL, PIPA and equivalents) with enforcement powers over the
+  enterprise''s jurisdiction-facing processing. Role record: the capacity is
+  common across governed territories; each named authority is instance
+  evidence. Role-class record (CR-CATALOG-STRUCT-16): the named parties that
+  hold this capacity are instance evidence, never the record identity; for
+  this enterprise the engaged instance is the UK Information Commissioner''s
+  Office (ICO).'
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: regulator
+external_references:
+- system: sibling-record
+  identifier: dea:regulation-uk-gdpr (dea-catalog-regulations)
+tags:
+- regulator
+- data-protection
+relationships:
+- source_id: stakeholders:stakeholder-data-protection-supervisory-authority-48udqa
+  target_id: dea:regulation-uk-gdpr
+  relationship_type: enforces
+  direction: source-to-target
+  rationale: 'The jurisdiction''s supervisory authority enforces its national
+    data-protection regime; for this enterprise the engaged instance is the UK
+    Information Commissioner''s Office, supervisory authority for the UK GDPR.
+    The sibling record anchors the regime (evidence channel 2).'

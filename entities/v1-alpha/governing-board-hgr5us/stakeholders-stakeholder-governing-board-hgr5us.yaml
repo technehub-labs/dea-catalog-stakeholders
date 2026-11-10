@@ -4,13 +4,16 @@ name: Emmanuel A. Otchere (governing board)
 description: 'Emmanuel A. Otchere, in the governing-board capacity for TechNeHub Labs: sole directing
   authority over the OpenDEA programme — organization ownership, change-request ratification, and release
   decisions. This record carries the governance capacity only; any performer capacity is out of scope
-  here (Actors catalog boundary, docs/FOUNDATIONS.md §1).'
-version: 1.0.0
-lifecycle_status: active
+  here (Actors catalog boundary, docs/FOUNDATIONS.md §1). Superseded by the role-first record `stakeholders:stakeholder-governing-board-authority-2wdtyy`
+  (CR-CATALOG-STRUCT-16); this party record is retained as the engaged-instance history.'
+version: 1.1.0
+lifecycle_status: retired
 stakeholder_type: board
 external_references:
 - system: github-org-ownership
   identifier: eaojnr (owner role, technehub-labs org)
+- system: superseded-by
+  identifier: stakeholders:stakeholder-governing-board-authority-2wdtyy
 tags:
 - board
 - governance

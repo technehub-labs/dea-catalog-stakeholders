@@ -1,0 +1,29 @@
+id: stakeholders:stakeholder-securities-and-markets-regulator-yeycka
+type: Stakeholder
+name: Securities and markets regulator
+description: 'The authority enforcing securities and markets law, including
+  insider-trading prohibitions anchored in the regulations catalog, engaging
+  the enterprise wherever securities-law duties attach. Role record, typified
+  by >=3 logged URL evidence instances across jurisdictions; each named
+  authority is instance evidence. Role-class record (CR-CATALOG-STRUCT-16):
+  the named parties that hold this capacity are instance evidence, never the
+  record identity; for this enterprise the engaged instance is the US
+  Securities and Exchange Commission (SEC).'
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: regulator
+external_references:
+- system: sibling-record
+  identifier: dea:regulation-us-securities-insider-trading (dea-catalog-regulations)
+tags:
+- regulator
+- securities
+relationships:
+- source_id: stakeholders:stakeholder-securities-and-markets-regulator-yeycka
+  target_id: dea:regulation-us-securities-insider-trading
+  relationship_type: enforces
+  direction: source-to-target
+  rationale: 'The authority enforces securities and markets law; for this enterprise the
+    engaged instance is the US Securities and Exchange Commission, enforcer of
+    the insider-trading prohibitions anchored in the regulations catalog. The
+    sibling record anchors the regime (evidence channel 2).'

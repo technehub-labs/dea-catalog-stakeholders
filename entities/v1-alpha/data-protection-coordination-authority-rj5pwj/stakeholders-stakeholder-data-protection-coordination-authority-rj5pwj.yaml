@@ -1,0 +1,34 @@
+id: stakeholders:stakeholder-data-protection-coordination-authority-rj5pwj
+type: Stakeholder
+name: Data-protection coordination authority
+description: 'The body coordinating or supervising data-protection enforcement above the
+  single-jurisdiction level (a coordination board of national authorities, an
+  institutional supervisor, or the global assembly of privacy regulators),
+  engaging the enterprise through consistent-application decisions and
+  cross-border enforcement coordination. Role record, typified by >=3 logged
+  URL evidence instances; each named body is instance evidence. Role-class
+  record (CR-CATALOG-STRUCT-16): the named parties that hold this capacity
+  are instance evidence, never the record identity; for this enterprise the
+  engaged instance is the European Data Protection Board with the national
+  supervisory authorities it coordinates.'
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: regulator
+external_references:
+- system: official-website
+  identifier: https://edpb.europa.eu
+- system: sibling-record
+  identifier: dea:regulation-eu-gdpr (dea-catalog-regulations)
+tags:
+- regulator
+- data-protection
+- coordination
+relationships:
+- source_id: stakeholders:stakeholder-data-protection-coordination-authority-rj5pwj
+  target_id: dea:regulation-eu-gdpr
+  relationship_type: enforces
+  direction: source-to-target
+  rationale: 'The GDPR is enforced by the coordination board and the national supervisory
+    authorities it coordinates; for this enterprise the engaged instance is the
+    EDPB with the national DPAs. The sibling record anchors the regime
+    (evidence channel 2).'
