@@ -1,6 +1,6 @@
 # CR-CATALOG-STRUCT-15: Evidence-Chain Dossiers for the Canonical Tranche
 
-**Status**: Open (PR #19)
+**Status**: Merged (PR #19)
 **Layer**: L1 (Stakeholders Catalog)
 **Owner**: Emmanuel A. Otchere
 **Date**: 2026-11-10
