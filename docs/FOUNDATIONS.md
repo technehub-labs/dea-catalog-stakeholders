@@ -56,11 +56,24 @@ not resolve to a specific named authority/body, is **not admitted**; it
 goes to the candidate register instead (customers and partners are there
 today, honestly unresolvable).
 
+Since CR-CATALOG-STRUCT-16 the canonical record is the **role class** — a
+reusable, jurisdiction-free capacity — not the named party. A role-class
+record is admitted when (a) the class is typified per the role taxonomy (≥3
+logged URL instance rows, or the two by-design exceptions: the collective
+community capacity and the single-incumbent board capacity) and (b) the
+instance that actually engages the enterprise is named in the record's
+evidence chain. Named parties and geographies live only as instance evidence
+rows; the 11 party-form records of the first tranche are retired in place
+(`lifecycle_status: retired`, superseded-by references) as the engaged-instance
+history.
+
 ## 3. Id minting convention
 
 Canonical id form (IDM-001, org-wide): `stakeholders:stakeholder-<slug>-<hash6>`.
 
-- `<slug>` is lower-kebab (`github-platform`, `uk-information-commissioner`).
+- `<slug>` is the jurisdiction-free **role-class slug** in lower-kebab
+  (`gdpr-supervisory-authority`, `state-consumer-privacy-regulator`); a named
+  party or geography never enters the record identity (CR-CATALOG-STRUCT-16).
 - `<hash6>` is assigned **once, at admission**, per
   `dea-metaframework/docs/id-system.md` §2.5, with the derivation refined by
   CR-CATALOG-STRUCT-14 to be reproducible without a fixed-point search:
@@ -99,6 +112,13 @@ instance `id`**: any `stakeholders:`-prefixed string inside a record is
 treated as a reference by IDM-003 and must resolve to a live record id, so
 instance ids are omitted rather than minted.
 
+Since CR-CATALOG-STRUCT-16, edges are asserted at the **role-class level**:
+the record is the capacity, the `rationale` names the engaged instance
+through which the enterprise is actually bound, and the target anchors the
+regime (evidence channel 2). The party-form source records of the first
+tranche are retired; their edges carry over to the role-class records
+unchanged in type and target.
+
 ## 5. Lifecycle and admission workflow
 
 Records carry `lifecycle_status` (metamodel enum: proposed / planned /
@@ -116,8 +136,14 @@ The admission workflow:
    types), CST suite, regenerator `--check` (CATALOG.yaml regenerated as
    the final commit action), IDM-008 PR coherence.
 5. Deprecation/retirement follows the metamodel lifecycle vocabulary;
-   retired records move under the subtree's `retired/` and are preserved,
-   never deleted (BC-09 §8 precedent).
+   retired records are preserved, never deleted (BC-09 §8 precedent), and
+   their ids stay assign-once (§3). Two shapes (CR-CATALOG-STRUCT-16): a
+   record whose subtree retains a live canonical successor moves under the
+   subtree's `retired/`; a record whose subtree holds no live successor is
+   retired in place at the subtree root (`lifecycle_status: retired`,
+   version bumped, a `superseded-by` external reference) so its id, dossier
+   and history stay first-class in the tree and the index (state:
+   `retired`).
 
 ## 6. Docs and gates map
 

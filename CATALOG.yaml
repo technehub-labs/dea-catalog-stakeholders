@@ -2,11 +2,11 @@ catalog:
   abbreviation: SH
   counts:
     candidates: 0
-    canonical: 11
-    entities: 11
-    open_change_requests: 0
-    research_files: 44
-    retired: 0
+    canonical: 12
+    entities: 23
+    open_change_requests: 1
+    research_files: 92
+    retired: 11
   cross_cutting:
     change_requests: change-requests/
     classifications: classifications/
@@ -27,8 +27,30 @@ catalog:
     canonical_count: 1
     id: stakeholders:stakeholder-california-privacy-protection-agency-mtxygk
     last_modified: '2026-11-10'
-    lifecycle_status: active
+    lifecycle_status: retired
     path: entities/v1-alpha/california-privacy-protection-agency-mtxygk/stakeholders-stakeholder-california-privacy-protection-agency-mtxygk.yaml
+    research_count: 4
+    retired_count: 0
+    state: retired
+    type: Stakeholder
+    version: 1.1.0
+  - candidate_count: 0
+    canonical_count: 1
+    id: stakeholders:stakeholder-data-protection-coordination-authority-rj5pwj
+    last_modified: '2026-11-10'
+    lifecycle_status: active
+    path: entities/v1-alpha/data-protection-coordination-authority-rj5pwj/stakeholders-stakeholder-data-protection-coordination-authority-rj5pwj.yaml
+    research_count: 4
+    retired_count: 0
+    state: canonical
+    type: Stakeholder
+    version: 1.0.0
+  - candidate_count: 0
+    canonical_count: 1
+    id: stakeholders:stakeholder-data-protection-supervisory-authority-48udqa
+    last_modified: '2026-11-10'
+    lifecycle_status: active
+    path: entities/v1-alpha/data-protection-supervisory-authority-48udqa/stakeholders-stakeholder-data-protection-supervisory-authority-48udqa.yaml
     research_count: 4
     retired_count: 0
     state: canonical
@@ -38,19 +60,30 @@ catalog:
     canonical_count: 1
     id: stakeholders:stakeholder-eu-data-protection-authorities-rs8g75
     last_modified: '2026-11-10'
-    lifecycle_status: active
+    lifecycle_status: retired
     path: entities/v1-alpha/eu-data-protection-authorities-rs8g75/stakeholders-stakeholder-eu-data-protection-authorities-rs8g75.yaml
     research_count: 4
     retired_count: 0
-    state: canonical
+    state: retired
     type: Stakeholder
-    version: 1.0.0
+    version: 1.1.0
   - candidate_count: 0
     canonical_count: 1
     id: stakeholders:stakeholder-eu-trade-secret-authorities-zwf29g
     last_modified: '2026-11-10'
-    lifecycle_status: active
+    lifecycle_status: retired
     path: entities/v1-alpha/eu-trade-secret-authorities-zwf29g/stakeholders-stakeholder-eu-trade-secret-authorities-zwf29g.yaml
+    research_count: 4
+    retired_count: 0
+    state: retired
+    type: Stakeholder
+    version: 1.1.0
+  - candidate_count: 0
+    canonical_count: 1
+    id: stakeholders:stakeholder-gdpr-supervisory-authority-qryy8j
+    last_modified: '2026-11-10'
+    lifecycle_status: active
+    path: entities/v1-alpha/gdpr-supervisory-authority-qryy8j/stakeholders-stakeholder-gdpr-supervisory-authority-qryy8j.yaml
     research_count: 4
     retired_count: 0
     state: canonical
@@ -60,8 +93,19 @@ catalog:
     canonical_count: 1
     id: stakeholders:stakeholder-github-inc-msn3q2
     last_modified: '2026-11-10'
-    lifecycle_status: active
+    lifecycle_status: retired
     path: entities/v1-alpha/github-inc-msn3q2/stakeholders-stakeholder-github-inc-msn3q2.yaml
+    research_count: 4
+    retired_count: 0
+    state: retired
+    type: Stakeholder
+    version: 1.1.0
+  - candidate_count: 0
+    canonical_count: 1
+    id: stakeholders:stakeholder-governing-board-authority-2wdtyy
+    last_modified: '2026-11-10'
+    lifecycle_status: active
+    path: entities/v1-alpha/governing-board-authority-2wdtyy/stakeholders-stakeholder-governing-board-authority-2wdtyy.yaml
     research_count: 4
     retired_count: 0
     state: canonical
@@ -71,8 +115,19 @@ catalog:
     canonical_count: 1
     id: stakeholders:stakeholder-governing-board-hgr5us
     last_modified: '2026-11-10'
-    lifecycle_status: active
+    lifecycle_status: retired
     path: entities/v1-alpha/governing-board-hgr5us/stakeholders-stakeholder-governing-board-hgr5us.yaml
+    research_count: 4
+    retired_count: 0
+    state: retired
+    type: Stakeholder
+    version: 1.1.0
+  - candidate_count: 0
+    canonical_count: 1
+    id: stakeholders:stakeholder-health-data-regulation-authority-yfkmah
+    last_modified: '2026-11-10'
+    lifecycle_status: active
+    path: entities/v1-alpha/health-data-regulation-authority-yfkmah/stakeholders-stakeholder-health-data-regulation-authority-yfkmah.yaml
     research_count: 4
     retired_count: 0
     state: canonical
@@ -82,8 +137,30 @@ catalog:
     canonical_count: 1
     id: stakeholders:stakeholder-hhs-office-for-civil-rights-hf7e8x
     last_modified: '2026-11-10'
-    lifecycle_status: active
+    lifecycle_status: retired
     path: entities/v1-alpha/hhs-office-for-civil-rights-hf7e8x/stakeholders-stakeholder-hhs-office-for-civil-rights-hf7e8x.yaml
+    research_count: 4
+    retired_count: 0
+    state: retired
+    type: Stakeholder
+    version: 1.1.0
+  - candidate_count: 0
+    canonical_count: 1
+    id: stakeholders:stakeholder-justice-enforcement-authority-hkuap7
+    last_modified: '2026-11-10'
+    lifecycle_status: active
+    path: entities/v1-alpha/justice-enforcement-authority-hkuap7/stakeholders-stakeholder-justice-enforcement-authority-hkuap7.yaml
+    research_count: 4
+    retired_count: 0
+    state: canonical
+    type: Stakeholder
+    version: 1.0.0
+  - candidate_count: 0
+    canonical_count: 1
+    id: stakeholders:stakeholder-open-source-licensee-community-57sarg
+    last_modified: '2026-11-10'
+    lifecycle_status: active
+    path: entities/v1-alpha/open-source-licensee-community-57sarg/stakeholders-stakeholder-open-source-licensee-community-57sarg.yaml
     research_count: 4
     retired_count: 0
     state: canonical
@@ -93,8 +170,19 @@ catalog:
     canonical_count: 1
     id: stakeholders:stakeholder-oss-community-nf74fy
     last_modified: '2026-11-10'
-    lifecycle_status: active
+    lifecycle_status: retired
     path: entities/v1-alpha/oss-community-nf74fy/stakeholders-stakeholder-oss-community-nf74fy.yaml
+    research_count: 4
+    retired_count: 0
+    state: retired
+    type: Stakeholder
+    version: 1.1.0
+  - candidate_count: 0
+    canonical_count: 1
+    id: stakeholders:stakeholder-payment-card-standards-body-bxqwjh
+    last_modified: '2026-11-10'
+    lifecycle_status: active
+    path: entities/v1-alpha/payment-card-standards-body-bxqwjh/stakeholders-stakeholder-payment-card-standards-body-bxqwjh.yaml
     research_count: 4
     retired_count: 0
     state: canonical
@@ -104,8 +192,52 @@ catalog:
     canonical_count: 1
     id: stakeholders:stakeholder-pci-security-standards-council-ek8khf
     last_modified: '2026-11-10'
-    lifecycle_status: active
+    lifecycle_status: retired
     path: entities/v1-alpha/pci-security-standards-council-ek8khf/stakeholders-stakeholder-pci-security-standards-council-ek8khf.yaml
+    research_count: 4
+    retired_count: 0
+    state: retired
+    type: Stakeholder
+    version: 1.1.0
+  - candidate_count: 0
+    canonical_count: 1
+    id: stakeholders:stakeholder-securities-and-markets-regulator-yeycka
+    last_modified: '2026-11-10'
+    lifecycle_status: active
+    path: entities/v1-alpha/securities-and-markets-regulator-yeycka/stakeholders-stakeholder-securities-and-markets-regulator-yeycka.yaml
+    research_count: 4
+    retired_count: 0
+    state: canonical
+    type: Stakeholder
+    version: 1.0.0
+  - candidate_count: 0
+    canonical_count: 1
+    id: stakeholders:stakeholder-source-control-and-ci-platform-supplier-cbnhwy
+    last_modified: '2026-11-10'
+    lifecycle_status: active
+    path: entities/v1-alpha/source-control-and-ci-platform-supplier-cbnhwy/stakeholders-stakeholder-source-control-and-ci-platform-supplier-cbnhwy.yaml
+    research_count: 4
+    retired_count: 0
+    state: canonical
+    type: Stakeholder
+    version: 1.0.0
+  - candidate_count: 0
+    canonical_count: 1
+    id: stakeholders:stakeholder-state-consumer-privacy-regulator-r9h6sp
+    last_modified: '2026-11-10'
+    lifecycle_status: active
+    path: entities/v1-alpha/state-consumer-privacy-regulator-r9h6sp/stakeholders-stakeholder-state-consumer-privacy-regulator-r9h6sp.yaml
+    research_count: 4
+    retired_count: 0
+    state: canonical
+    type: Stakeholder
+    version: 1.0.0
+  - candidate_count: 0
+    canonical_count: 1
+    id: stakeholders:stakeholder-trade-secret-enforcement-authority-2374nw
+    last_modified: '2026-11-10'
+    lifecycle_status: active
+    path: entities/v1-alpha/trade-secret-enforcement-authority-2374nw/stakeholders-stakeholder-trade-secret-enforcement-authority-2374nw.yaml
     research_count: 4
     retired_count: 0
     state: canonical
@@ -115,35 +247,35 @@ catalog:
     canonical_count: 1
     id: stakeholders:stakeholder-uk-information-commissioner-5e64th
     last_modified: '2026-11-10'
-    lifecycle_status: active
+    lifecycle_status: retired
     path: entities/v1-alpha/uk-information-commissioner-5e64th/stakeholders-stakeholder-uk-information-commissioner-5e64th.yaml
     research_count: 4
     retired_count: 0
-    state: canonical
+    state: retired
     type: Stakeholder
-    version: 1.0.0
+    version: 1.1.0
   - candidate_count: 0
     canonical_count: 1
     id: stakeholders:stakeholder-us-department-of-justice-nqbwya
     last_modified: '2026-11-10'
-    lifecycle_status: active
+    lifecycle_status: retired
     path: entities/v1-alpha/us-department-of-justice-nqbwya/stakeholders-stakeholder-us-department-of-justice-nqbwya.yaml
     research_count: 4
     retired_count: 0
-    state: canonical
+    state: retired
     type: Stakeholder
-    version: 1.0.0
+    version: 1.1.0
   - candidate_count: 0
     canonical_count: 1
     id: stakeholders:stakeholder-us-securities-and-exchange-commission-ucaru6
     last_modified: '2026-11-10'
-    lifecycle_status: active
+    lifecycle_status: retired
     path: entities/v1-alpha/us-securities-and-exchange-commission-ucaru6/stakeholders-stakeholder-us-securities-and-exchange-commission-ucaru6.yaml
     research_count: 4
     retired_count: 0
-    state: canonical
+    state: retired
     type: Stakeholder
-    version: 1.0.0
+    version: 1.1.0
   id: dea:catalog-stakeholders
   metamodel_version: 1.0.0
   name: Stakeholders
@@ -157,6 +289,20 @@ catalog:
     - evidence-chain.md
     - stakeholder-profile.md
     path: entities/v1-alpha/california-privacy-protection-agency-mtxygk/research/
+  - entity_id: stakeholders:stakeholder-data-protection-coordination-authority-rj5pwj
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
+    path: entities/v1-alpha/data-protection-coordination-authority-rj5pwj/research/
+  - entity_id: stakeholders:stakeholder-data-protection-supervisory-authority-48udqa
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
+    path: entities/v1-alpha/data-protection-supervisory-authority-48udqa/research/
   - entity_id: stakeholders:stakeholder-eu-data-protection-authorities-rs8g75
     files:
     - README.md
@@ -171,6 +317,13 @@ catalog:
     - evidence-chain.md
     - stakeholder-profile.md
     path: entities/v1-alpha/eu-trade-secret-authorities-zwf29g/research/
+  - entity_id: stakeholders:stakeholder-gdpr-supervisory-authority-qryy8j
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
+    path: entities/v1-alpha/gdpr-supervisory-authority-qryy8j/research/
   - entity_id: stakeholders:stakeholder-github-inc-msn3q2
     files:
     - README.md
@@ -178,6 +331,13 @@ catalog:
     - evidence-chain.md
     - stakeholder-profile.md
     path: entities/v1-alpha/github-inc-msn3q2/research/
+  - entity_id: stakeholders:stakeholder-governing-board-authority-2wdtyy
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
+    path: entities/v1-alpha/governing-board-authority-2wdtyy/research/
   - entity_id: stakeholders:stakeholder-governing-board-hgr5us
     files:
     - README.md
@@ -185,6 +345,13 @@ catalog:
     - evidence-chain.md
     - stakeholder-profile.md
     path: entities/v1-alpha/governing-board-hgr5us/research/
+  - entity_id: stakeholders:stakeholder-health-data-regulation-authority-yfkmah
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
+    path: entities/v1-alpha/health-data-regulation-authority-yfkmah/research/
   - entity_id: stakeholders:stakeholder-hhs-office-for-civil-rights-hf7e8x
     files:
     - README.md
@@ -192,6 +359,20 @@ catalog:
     - evidence-chain.md
     - stakeholder-profile.md
     path: entities/v1-alpha/hhs-office-for-civil-rights-hf7e8x/research/
+  - entity_id: stakeholders:stakeholder-justice-enforcement-authority-hkuap7
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
+    path: entities/v1-alpha/justice-enforcement-authority-hkuap7/research/
+  - entity_id: stakeholders:stakeholder-open-source-licensee-community-57sarg
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
+    path: entities/v1-alpha/open-source-licensee-community-57sarg/research/
   - entity_id: stakeholders:stakeholder-oss-community-nf74fy
     files:
     - README.md
@@ -199,6 +380,13 @@ catalog:
     - evidence-chain.md
     - stakeholder-profile.md
     path: entities/v1-alpha/oss-community-nf74fy/research/
+  - entity_id: stakeholders:stakeholder-payment-card-standards-body-bxqwjh
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
+    path: entities/v1-alpha/payment-card-standards-body-bxqwjh/research/
   - entity_id: stakeholders:stakeholder-pci-security-standards-council-ek8khf
     files:
     - README.md
@@ -206,6 +394,34 @@ catalog:
     - evidence-chain.md
     - stakeholder-profile.md
     path: entities/v1-alpha/pci-security-standards-council-ek8khf/research/
+  - entity_id: stakeholders:stakeholder-securities-and-markets-regulator-yeycka
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
+    path: entities/v1-alpha/securities-and-markets-regulator-yeycka/research/
+  - entity_id: stakeholders:stakeholder-source-control-and-ci-platform-supplier-cbnhwy
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
+    path: entities/v1-alpha/source-control-and-ci-platform-supplier-cbnhwy/research/
+  - entity_id: stakeholders:stakeholder-state-consumer-privacy-regulator-r9h6sp
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
+    path: entities/v1-alpha/state-consumer-privacy-regulator-r9h6sp/research/
+  - entity_id: stakeholders:stakeholder-trade-secret-enforcement-authority-2374nw
+    files:
+    - README.md
+    - correlations.md
+    - evidence-chain.md
+    - stakeholder-profile.md
+    path: entities/v1-alpha/trade-secret-enforcement-authority-2374nw/research/
   - entity_id: stakeholders:stakeholder-uk-information-commissioner-5e64th
     files:
     - README.md

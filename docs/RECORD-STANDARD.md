@@ -13,11 +13,16 @@ Obligations beyond the schema (metamodel v1.0.0 projection, closed world):
 
 1. `name` is the real name as consumers know it (organisation, authority,
    or capacity — e.g. `GitHub, Inc.`, `UK Information Commissioner's Office`,
-   `Emmanuel A. Otchere (governing board capacity)`).
+   `Emmanuel A. Otchere (governing board capacity)`). Since CR-CATALOG-STRUCT-16
+   the canonical record is the role class, so `name` is the capacity's name
+   (e.g. `GDPR supervisory authority`, `Source-control and CI platform
+   supplier`); named parties are instance evidence.
 2. `description` states what the party is and the capacity in which it
    engages the enterprise — not a restatement of the name. Where a dual
    capacity exists (Actor vs Stakeholder), the description says which
-   capacity this record carries (Actors boundary, FOUNDATIONS §1).
+   capacity this record carries (Actors boundary, FOUNDATIONS §1). Since CR-CATALOG-STRUCT-16 the
+   description states the class capacity and names the engaged instance for
+   this enterprise; it carries no `stakeholders:` record id (IDM-003).
 3. `stakeholder_type` is the metamodel enum value for the relationship
    class; never widened locally.
 4. `lifecycle_status: active` on canonical admission (CST-004);
@@ -82,4 +87,8 @@ Every canonical record subtree also carries a `research/` dossier — the
 exhaustive evidence chain, the stakeholder profile, and the cross-catalog
 correlations — per [`EVIDENCE-STANDARD.md`](EVIDENCE-STANDARD.md). The record
 YAML and this standard's §1..§4 obligations are unchanged; the dossier is
-documentation-grade and never widens the record.
+documentation-grade and never widens the record. Since CR-CATALOG-STRUCT-16
+the canonical record is the role class: the chain carries the full class
+corpus (every `E-####` row of the class), and the profile defines the capacity
+with the engaged instances named. Retired party-form records keep their
+subtrees and dossiers as engaged-instance history (FOUNDATIONS §5).

@@ -27,7 +27,11 @@ The `research/` dossier is the exhaustive-evidence layer: its contract is
 `docs/EVIDENCE-STANDARD.md` (CR-CATALOG-STRUCT-15), and the role classes its
 rows typify live in `classifications/stakeholder-role-taxonomy.md`. Dossier
 files are documentation-grade Markdown — the record YAML remains the only
-normative artifact, and the dossier never widens a record or an edge.
+normative artifact, and the dossier never widens a record or an edge. Since CR-CATALOG-STRUCT-16 the
+canonical records are role classes — the reusable, jurisdiction-free capacities
+of the role taxonomy; the named parties of the first tranche are retired in
+place (`lifecycle_status: retired`), and their dossiers remain as the
+engaged-instance history.
 
 Subdirectory names are the id's `<slug>-<hash6>` body (IDM-005: dir = id minus the `stakeholders:stakeholder-` prefix; file = the full id with `:` normalized to `-`, lowercased). The 6-character hash is assigned **once at admission** per `dea-metaframework/docs/id-system.md` §2.5 (first 4 bytes of the record file's SHA-256, big-endian, 6 base-31 digits over `abcdefghjkmnpqrstuvwxyz23456789`) and is **never recomputed** against live content afterwards — IDM-004 checks well-formedness and uniqueness only, and the CST suite does not recompute hashes either.
 
