@@ -15,14 +15,8 @@ Exit codes (stable contract):
   3  --check mode: committed CATALOG.yaml is stale
 
 Usage:
-  python scripts/regenerate_catalog.py [--catalog-root PATH] [--output PATH] \\
+  python tools/regenerate_catalog.py [--catalog-root PATH] [--output PATH] \\
       [--check] [--dry-run] [--verbose] [--schema PATH]
-
-Vendored copy (CR-CATALOG-STRUCT-12; source:
-dea-metaframework tools/regenerate_catalog.py @ origin/main, carrying
-CR-ECF-011 + the hyphen-form infer_state fix). Vendored-path adaptations:
-the usage/default-schema paths below point at this repo's layout
-(scripts/, catalog-index-schema/).
 """
 
 from __future__ import annotations
@@ -55,12 +49,10 @@ STATE_PRECEDENCE: dict[str, int] = {
 RETIRED_LIFECYCLE_STATUSES: frozenset[str] = frozenset({"deprecated", "retired"})
 
 # Schema path default; relative to the catalog root.
-# Vendored-path adaptation (CR-CATALOG-STRUCT-12): this repo keeps the
-# schema at catalog-index-schema/catalog-index-schema.json.
-DEFAULT_SCHEMA_PATH = "catalog-index-schema/catalog-index-schema.json"
+DEFAULT_SCHEMA_PATH = "tools/catalog-index-schema.json"
 
 # metamodel-pointer.yaml keys we consume (case-sensitive; mirrors what other
-# catalog repos already use).
+catalog repos already use).
 POINTER_KEYS: dict[str, str] = {
     "id": "catalog.id",
     "name": "catalog.name",
@@ -108,7 +100,6 @@ CLOSED_CR_STATUSES = frozenset(
 _STATUS_LINE_RE = re.compile(r"^\*\*Status\*\*:\s*(.+)$")
 _STATUS_TABLE_RE = re.compile(r"^\|\s*\*\*Status\*\*\s*\|\s*(.+?)\s*\|$")
 
-
 def _cr_status_token(head: str) -> str | None:
     """First Status value in a CR head as a bare token, or None.
 
@@ -125,11 +116,9 @@ def _cr_status_token(head: str) -> str | None:
             return re.split(r"[;(,]", m.group(1))[0].strip()
     return None
 
-
 def load_schema(schema_path: Path) -> dict[str, Any]:
     with schema_path.open("r", encoding="utf-8") as fh:
         return json.load(fh)
-
 
 def load_yaml(path: Path) -> dict[str, Any] | None:
     """Load a YAML file; return None on empty or non-mapping content."""
@@ -142,7 +131,6 @@ def load_yaml(path: Path) -> dict[str, Any] | None:
         return None
     return data
 
-
 def read_pointer(catalog_root: Path) -> dict[str, Any]:
     """Read metamodel-pointer.yaml at the catalog root; return empty dict on absence."""
     pointer_path = catalog_root / "metamodel-pointer.yaml"
@@ -150,7 +138,6 @@ def read_pointer(catalog_root: Path) -> dict[str, Any]:
         return {}
     data = load_yaml(pointer_path) or {}
     return data
-
 
 def detect_repository_url(catalog_root: Path) -> str:
     """Read git origin URL; sanitize embedded credentials; return empty string on failure.
@@ -175,7 +162,6 @@ def detect_repository_url(catalog_root: Path) -> str:
         return ""
     return _strip_url_credentials(result.stdout.strip())
 
-
 def _strip_url_credentials(url: str) -> str:
     """Remove userinfo (user:pass@ or PAT-as-username@) from a URL.
 
@@ -195,11 +181,9 @@ def _strip_url_credentials(url: str) -> str:
         return url
     return url[:after_scheme] + url[at_index + 1:]
 
-
 def catalog_name_from_dir(catalog_root: Path) -> str:
     """Derive a catalog id from the repo directory name when the pointer is absent."""
     return catalog_root.resolve().name
-
 
 def build_catalog_metadata(
     catalog_root: Path, pointer: dict[str, Any], verbose: bool
@@ -225,14 +209,61 @@ def build_catalog_metadata(
     }
     return metadata, warnings
 
+# Top-level state groupings (CR-CATALOG-STRUCT-12). The state directory
+# names double as per-subtree content dir names (the subtree's own
+# research/, candidates/, retired/ dirs); a grouping is recognized only
+# when the state dir sits DIRECTLY under entities/v1-alpha/.
+STATE_DIRS = ("research", "candidates", "retired")
+
+def _is_top_state_grouping(path: Path, entities_root: Path) -> bool:
+    """True if `path` is a state dir directly under the entities root."""
+    return path.parent == entities_root and path.name in STATE_DIRS
+
+def _grouped_subtree_dirs(entities_root: Path) -> list[Path]:
+    """Direct children of every top-level state grouping."""
+    out: list[Path] = []
+    for name in STATE_DIRS:
+        grouping = entities_root / name
+        if grouping.is_dir():
+            out.extend(p for p in grouping.iterdir() if p.is_dir())
+    return out
+
+def _subtree_rel_dir(subtree: Path) -> str:
+    """Repo-relative entity dir for `subtree`'s actual position on disk.
+
+    Flat layout: `entities/v1-alpha/<dir>`. Grouped layout
+    (CR-CATALOG-STRUCT-12): `entities/v1-alpha/<state>/<dir>` when the
+    subtree sits directly under a top-level state grouping. Derived from
+    the subtree's real position so the emitted path always matches disk
+    truth; falls back to the flat form for subtrees outside an entities
+    tree (unit-test fixtures).
+    """
+    parent = subtree.parent
+    if parent.name in STATE_DIRS and parent.parent.name == "v1-alpha":
+        return f"entities/v1-alpha/{parent.name}/{subtree.name}"
+    return f"entities/v1-alpha/{subtree.name}"
 
 def list_subtrees(catalog_root: Path) -> list[Path]:
-    """List every directory under `entities/v1-alpha/`; sorted lexicographically."""
+    """List every entity subtree under `entities/v1-alpha/`; sorted.
+
+    Flat layout: one directory per record directly under the entities
+    root. Grouped layout (CR-CATALOG-STRUCT-12): a state directory that
+    sits *directly* under the entities root (`research/`, `candidates/`,
+    `retired/`) groups whole entity subtrees by state, and its direct
+    children enumerate here. State directories at deeper levels keep their
+    per-subtree semantics (the subtree's own content dirs) and do not
+    enumerate.
+    """
     entities_root = catalog_root / "entities" / "v1-alpha"
     if not entities_root.exists():
         return []
-    return sorted([p for p in entities_root.iterdir() if p.is_dir()])
-
+    out = [
+        p
+        for p in entities_root.iterdir()
+        if p.is_dir() and not _is_top_state_grouping(p, entities_root)
+    ]
+    out.extend(_grouped_subtree_dirs(entities_root))
+    return sorted(out)
 
 def entity_id_from_subtree(subtree: Path) -> str:
     """Derive the entity id for a subtree directory.
@@ -253,7 +284,6 @@ def entity_id_from_subtree(subtree: Path) -> str:
         if isinstance(data, dict) and isinstance(data.get("id"), str):
             return data["id"]
     return subtree.name
-
 
 def read_canonical_yaml(subtree: Path, entity_id: str) -> dict[str, Any] | None:
     """Load the canonical YAML at the subtree root; return None if absent.
@@ -282,24 +312,20 @@ def read_canonical_yaml(subtree: Path, entity_id: str) -> dict[str, Any] | None:
             return load_yaml(retired_files[-1])
     return None
 
-
 def state_research_present(subtree: Path) -> bool:
     return (subtree / "research").is_dir() and any(
         p.is_file() for p in (subtree / "research").iterdir()
     )
-
 
 def state_candidates_present(subtree: Path) -> bool:
     return (subtree / "candidates").is_dir() and any(
         p.is_file() for p in (subtree / "candidates").iterdir()
     )
 
-
 def state_retired_present(subtree: Path) -> bool:
     return (subtree / "retired").is_dir() and any(
         p.is_file() for p in (subtree / "retired").iterdir()
     )
-
 
 def infer_state(subtree: Path, canonical: dict[str, Any] | None) -> tuple[str, str | None]:
     """Infer the entity's state per CR-CATALOG-STRUCT-06a §4.1 precedence rule.
@@ -312,16 +338,17 @@ def infer_state(subtree: Path, canonical: dict[str, Any] | None) -> tuple[str, s
     # (legacy flat layout) or the normalized hyphen-form that
     # read_canonical_yaml prefers (post-mv1 and kit-generated layouts).
     # Checking both keeps infer_state in agreement with read_canonical_yaml;
-    # checking only the colon form misclassified every hyphen-named
-    # canonical record as a candidate (observed on
+    # checking only the colon form misclassified every hyphen-named canonical
+    # record as a candidate (observed on
     # dea-catalog-business-capabilities: 29 canonical records counted as
     # candidates since the mv1 id migration).
     hyphen_file = subtree / (entity_id.replace(":", "-").lower() + ".yaml")
     colon_file = subtree / f"{entity_id}.yaml"
+    rel_dir = _subtree_rel_dir(subtree)
     if hyphen_file.exists():
-        canonical_path = f"entities/v1-alpha/{entity_id}/{hyphen_file.name}"
+        canonical_path = f"{rel_dir}/{hyphen_file.name}"
     elif colon_file.exists():
-        canonical_path = f"entities/v1-alpha/{entity_id}/{entity_id}.yaml"
+        canonical_path = f"{rel_dir}/{entity_id}.yaml"
     else:
         canonical_path = None
 
@@ -346,7 +373,7 @@ def infer_state(subtree: Path, canonical: dict[str, Any] | None) -> tuple[str, s
                 return "retired", canonical_path
             retired_files = sorted((subtree / "retired").glob("*.yaml")) if (subtree / "retired").is_dir() else []
             if retired_files:
-                return "retired", f"entities/v1-alpha/{entity_id}/retired/{retired_files[-1].name}"
+                return "retired", f"{_subtree_rel_dir(subtree)}/retired/{retired_files[-1].name}"
             return "retired", canonical_path
 
     # Precedence 2: candidates/ has files but no canonical.
@@ -367,13 +394,11 @@ def infer_state(subtree: Path, canonical: dict[str, Any] | None) -> tuple[str, s
     # Defensive fallback: candidate placeholder.
     return "candidate", canonical_path
 
-
 def count_regular_files(directory: Path) -> int:
     """Count regular files under a directory (recursive=False)."""
     if not directory.is_dir():
         return 0
     return sum(1 for p in directory.iterdir() if p.is_file())
-
 
 def list_research_files(subtree: Path) -> list[str]:
     """Lexicographically sorted regular file names under research/."""
@@ -381,7 +406,6 @@ def list_research_files(subtree: Path) -> list[str]:
     if not research.is_dir():
         return []
     return sorted(p.name for p in research.iterdir() if p.is_file())
-
 
 def max_mtime_date(subtree: Path) -> str:
     """Max mtime across the subtree's regular files, formatted YYYY-MM-DD (UTC).
@@ -403,7 +427,6 @@ def max_mtime_date(subtree: Path) -> str:
     if latest == 0.0:
         return "1970-01-01"
     return datetime.fromtimestamp(latest, tz=timezone.utc).strftime("%Y-%m-%d")
-
 
 def git_last_commit_date(subtree: Path, repo_root: Path) -> str:
     """Last git commit date affecting any file under the subtree.
@@ -442,7 +465,6 @@ def git_last_commit_date(subtree: Path, repo_root: Path) -> str:
         return max_mtime_date(subtree)
     return datetime.fromtimestamp(int(out), tz=timezone.utc).strftime("%Y-%m-%d")
 
-
 def entity_path_for(subtree: Path, state: str) -> str | None:
     """Build the repo-relative path field for the entity entry.
 
@@ -451,21 +473,21 @@ def entity_path_for(subtree: Path, state: str) -> str | None:
     the id with colons normalized to hyphens.
     """
     entity_id = entity_id_from_subtree(subtree)
+    rel_dir = _subtree_rel_dir(subtree)
     canonical = subtree / (entity_id.replace(":", "-").lower() + ".yaml")
     if canonical.exists():
-        return f"entities/v1-alpha/{subtree.name}/{canonical.name}"
+        return f"{rel_dir}/{canonical.name}"
     legacy = subtree / f"{entity_id}.yaml"
     if legacy.exists():
-        return f"entities/v1-alpha/{subtree.name}/{entity_id}.yaml"
+        return f"{rel_dir}/{entity_id}.yaml"
     # First candidate file
     candidates_dir = subtree / "candidates"
     if candidates_dir.is_dir():
         candidates = sorted(p for p in candidates_dir.iterdir() if p.is_file() and p.suffix in (".yaml", ".yml"))
         if candidates:
-            return f"entities/v1-alpha/{subtree.name}/candidates/{candidates[0].name}"
+            return f"{rel_dir}/candidates/{candidates[0].name}"
     # Subtree root with trailing slash
-    return f"entities/v1-alpha/{subtree.name}/"
-
+    return f"{rel_dir}/"
 
 def build_entity_entry(
     subtree: Path, catalog_root: Path, verbose: bool
@@ -484,7 +506,7 @@ def build_entity_entry(
 
     if path is None:
         # Empty subtree; use the subtree root path with trailing slash.
-        path = f"entities/v1-alpha/{entity_id}/"
+        path = f"{_subtree_rel_dir(subtree)}/"
         warnings.append(f"entity {entity_id!r} has no files; emitting empty placeholder")
 
     if canonical is None:
@@ -520,7 +542,6 @@ def build_entity_entry(
 
     return entry, warnings
 
-
 def build_research_registers(entities: list[dict[str, Any]], catalog_root: Path) -> list[dict[str, Any]]:
     """Build research_registers[] from the entity entries."""
     registers: list[dict[str, Any]] = []
@@ -543,7 +564,6 @@ def build_research_registers(entities: list[dict[str, Any]], catalog_root: Path)
             }
         )
     return registers
-
 
 def count_open_change_requests(catalog_root: Path) -> int:
     """Count CR-*.md files in change-requests/ whose status is not terminal.
@@ -569,7 +589,6 @@ def count_open_change_requests(catalog_root: Path) -> int:
         # Proposed, Draft, unknown token, or no status line: conservative open.
         open_count += 1
     return open_count
-
 
 def build_payload(
     catalog_root: Path, schema: dict[str, Any], verbose: bool
@@ -619,7 +638,6 @@ def build_payload(
         }
     }
     return payload, all_warnings
-
 
 def validate_payload(payload: dict[str, Any], schema: dict[str, Any]) -> list[str]:
     """Lightweight structural validation against the schema.
@@ -680,7 +698,6 @@ def validate_payload(payload: dict[str, Any], schema: dict[str, Any]) -> list[st
 
     return errors
 
-
 def render_yaml(payload: dict[str, Any]) -> str:
     """Render the payload as YAML, deterministically (sorted keys, block style)."""
     return yaml.safe_dump(
@@ -691,7 +708,6 @@ def render_yaml(payload: dict[str, Any]) -> str:
         width=10000,  # disable line wrapping to keep entity entries on single lines
     )
 
-
 def atomic_write(output_path: Path, content: str) -> None:
     """Write content to output_path atomically via tmp + os.replace."""
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -699,10 +715,9 @@ def atomic_write(output_path: Path, content: str) -> None:
     tmp.write_text(content, encoding="utf-8")
     os.replace(tmp, output_path)
 
-
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Regenerate CATALOG.yaml for a catalog repo (CR-CATALOG-STRUCT-06a)."
+        description="Regenerate CATALOG.yaml for a catalog repo (CR-CATALOG-STRUCT-06a).",
     )
     parser.add_argument(
         "--catalog-root",
@@ -735,7 +750,6 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Print per-entity detection diagnostics to stderr.",
     )
     return parser.parse_args(argv)
-
 
 def run(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
@@ -790,7 +804,7 @@ def run(argv: list[str] | None = None) -> int:
             print(f"OK: {output_path} is current")
             return 0
         print(
-            f"ERROR: {output_path} is stale; run `python scripts/regenerate_catalog.py` to refresh",
+            f"ERROR: {output_path} is stale; run `python tools/regenerate_catalog.py` to refresh",
             file=sys.stderr,
         )
         return 3
@@ -804,7 +818,6 @@ def run(argv: list[str] | None = None) -> int:
     if args.verbose:
         print(f"OK: wrote {output_path} ({len(rendered)} bytes; {len(payload['catalog']['entities'])} entities)", file=sys.stderr)
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(run())
