@@ -86,7 +86,7 @@
           "additionalProperties": false,
           "properties": {
             "classifications": { "type": "string", "pattern": ".+/" },
-            "schemas": { "type": "string" "pattern": ".+/" },
+            "schemas": { "type": "string", "pattern": ".+/" },
             "validators": { "type": "string", "pattern": ".+/" },
             "contributions_queue": { "type": "string", "pattern": ".+/" },
             "change_requests": { "type": "string", "pattern": ".+/" }
