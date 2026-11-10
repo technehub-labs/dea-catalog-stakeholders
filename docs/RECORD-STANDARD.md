@@ -75,3 +75,11 @@ it resolves. Steward review (the PR review) checks: the evidence channel is
 the right one, the description states the capacity honestly, deferred edges
 are genuinely blocked on a missing target (not on missing homework), and
 the candidate register stays truthful about what is *not* yet admissible.
+
+## 5. Research dossier (CR-CATALOG-STRUCT-15)
+
+Every canonical record subtree also carries a `research/` dossier — the
+exhaustive evidence chain, the stakeholder profile, and the cross-catalog
+correlations — per [`EVIDENCE-STANDARD.md`](EVIDENCE-STANDARD.md). The record
+YAML and this standard's §1..§4 obligations are unchanged; the dossier is
+documentation-grade and never widens the record.

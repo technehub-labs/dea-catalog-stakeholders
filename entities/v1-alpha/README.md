@@ -14,9 +14,20 @@ Stakeholders are stored in a **flat layout** under this directory (one subtree p
 v1-alpha/
 ├── <slug>-<hash6>/                                        # record subtree
 │   ├── stakeholders-stakeholder-<slug>-<hash6>.yaml       # the record (id with ':' -> '-')
-│   └── README.md                                          # per-record documentation (IDM-007)
+│   ├── README.md                                          # per-record documentation (IDM-007)
+│   └── research/                                          # evidence-chain dossier (CR-CATALOG-STRUCT-15)
+│       ├── README.md                                      # dossier index + provenance (CST-009)
+│       ├── evidence-chain.md                              # every evidence row (E-#### ids, channels, URLs)
+│       ├── stakeholder-profile.md                         # definition, goals, activities, engagement
+│       └── correlations.md                                # related entities across the catalog fleet
 └── README.md
 ```
+
+The `research/` dossier is the exhaustive-evidence layer: its contract is
+`docs/EVIDENCE-STANDARD.md` (CR-CATALOG-STRUCT-15), and the role classes its
+rows typify live in `classifications/stakeholder-role-taxonomy.md`. Dossier
+files are documentation-grade Markdown — the record YAML remains the only
+normative artifact, and the dossier never widens a record or an edge.
 
 Subdirectory names are the id's `<slug>-<hash6>` body (IDM-005: dir = id minus the `stakeholders:stakeholder-` prefix; file = the full id with `:` normalized to `-`, lowercased). The 6-character hash is assigned **once at admission** per `dea-metaframework/docs/id-system.md` §2.5 (first 4 bytes of the record file's SHA-256, big-endian, 6 base-31 digits over `abcdefghjkmnpqrstuvwxyz23456789`) and is **never recomputed** against live content afterwards — IDM-004 checks well-formedness and uniqueness only, and the CST suite does not recompute hashes either.
 
