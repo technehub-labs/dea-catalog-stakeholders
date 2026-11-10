@@ -1,6 +1,6 @@
 # CR-CATALOG-STRUCT-17: Retired-Subtree Grouping (State-Grouped Layout for Fully-Retired Records)
 
-**Status**: Open (PR #23)
+**Status**: Merged (PR #23)
 **Layer**: L1 (Stakeholders Catalog)
 **Owner**: Emmanuel A. Otchere
 **Date**: 2026-11-10
