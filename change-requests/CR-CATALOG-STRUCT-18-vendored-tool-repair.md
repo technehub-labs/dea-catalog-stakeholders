@@ -15,6 +15,7 @@
 |---|---|
 | `scripts/regenerate_catalog.py` | wholesale clean re-vendor from `dea-metaframework` v2.8.0 (`tools/regenerate_catalog.py` @ `607eef6`); zero stakeholders-specific logic existed in the copy, so this is byte-exact to the source the CR-STRUCT-17 entry already specified |
 | `scripts/check_catalog_index.py` | same clean re-vendor (its only defect was cosmetic blank-line stripping; re-vendored for byte-truth) |
+| `scripts/check_id_system.py` (repo-local gate) | one-line repair: the IDM-008 report path passed the undefined bare name `base_ref` to `_write_report` instead of `args.base_ref`, raising `NameError` whenever `--report-path` is given (the CI workflow always passes it); latent since the IDM-008 step was added and masked by the upstream failures that stopped CI before this step |
 
 ## 2. Verification
 
@@ -23,6 +24,7 @@
 - `check_catalog_index.py --strict`: OK, 23 entities.
 - `check_pointer.py`, `check_schema.py`: Findings 0.
 - `check_entity_system.py`: CONFORMANT; `check_id_system.py --strict`: 23 records, 0 findings; `check_authorship.py --strict`: 0 hits.
+- `check_id_system.py --base-ref origin/main --report-path ...` (IDM-008 PR-scoped): runs to completion (NameError gone), CONFORMANT over the PR's changed files.
 - Conformance suite (v2.8.0): 17/17 CSTs, 0 warnings (`--strict`).
 
 ## 3. NOT-List
