@@ -1,0 +1,22 @@
+id: stakeholders:stakeholder-hhs-office-for-civil-rights-hf7e8x
+type: Stakeholder
+name: US HHS Office for Civil Rights (OCR)
+description: The US Department of Health and Human Services, Office for Civil Rights — the regulator that
+  enforces the HIPAA Privacy and Security Rules for protected health information. Superseded by the role-first
+  record `stakeholders:stakeholder-health-data-regulation-authority-yfkmah` (CR-CATALOG-STRUCT-16); this
+  party record is retained as the engaged-instance history. Its asserted edges moved to the role record
+  (asserted through this engaged instance).
+version: 1.1.0
+lifecycle_status: retired
+stakeholder_type: regulator
+external_references:
+- system: official-website
+  identifier: https://www.hhs.gov/ocr
+- system: sibling-record
+  identifier: dea:regulation-us-hipaa (dea-catalog-regulations)
+- system: superseded-by
+  identifier: stakeholders:stakeholder-health-data-regulation-authority-yfkmah
+tags:
+- regulator
+- health-data
+- us
