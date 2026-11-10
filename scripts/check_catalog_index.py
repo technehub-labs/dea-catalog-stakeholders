@@ -31,7 +31,7 @@ from typing import Any
 
 try:
     import yaml  # type: ignore
-except ImportError:  # pragma: no cover
+except ImportError:  # pragma: no cover - PyYAML is required at runtime
     print("ERROR: PyYAML is required (pip install pyyaml)", file=sys.stderr)
     sys.exit(1)
 
@@ -41,7 +41,6 @@ try:
 except ImportError:
     _Draft7Validator = None  # type: ignore
     HAVE_JSONSCHEMA = False
-
 
 # Re-export at module scope for type checkers.
 Draft7Validator = _Draft7Validator
@@ -58,24 +57,54 @@ ENTITY_ID_PATTERN = re.compile(
     r"-[abcdefghjkmnpqrstuvwxyz23456789]{6})$"
 )
 
-
 def load_schema(schema_path: Path) -> dict[str, Any]:
     with schema_path.open("r", encoding="utf-8") as fh:
         return json.load(fh)
-
 
 def load_yaml(path: Path) -> Any:
     with path.open("r", encoding="utf-8") as fh:
         return yaml.safe_load(fh)
 
+# Top-level state groupings (CR-CATALOG-STRUCT-12). The state directory
+# names double as per-subtree content dir names (the subtree's own
+# research/, candidates/, retired/ dirs); a grouping is recognized only
+# when the state dir sits DIRECTLY under entities/v1-alpha/.
+_STATE_DIRS = ("research", "candidates", "retired")
+
+def _is_top_state_grouping(path: Path, entities_root: Path) -> bool:
+    """True if `path` is a state dir directly under the entities root."""
+    return path.parent == entities_root and path.name in _STATE_DIRS
+
+def _grouped_subtree_dirs(entities_root: Path) -> list[Path]:
+    """Direct children of every top-level state grouping."""
+    out: list[Path] = []
+    for name in _STATE_DIRS:
+        grouping = entities_root / name
+        if grouping.is_dir():
+            out.extend(p for p in grouping.iterdir() if p.is_dir())
+    return out
 
 def list_subtrees(catalog_root: Path) -> list[Path]:
-    """List every directory under `entities/v1-alpha/`; sorted lexicographically."""
+    """List every entity subtree under `entities/v1-alpha/`; sorted.
+
+    Flat layout: one directory per record directly under the entities
+    root. Grouped layout (CR-CATALOG-STRUCT-12): a state directory that
+    sits *directly* under the entities root groups whole entity subtrees
+    by state; its direct children enumerate here. Deeper state dirs keep
+    per-subtree semantics and do not enumerate. Mirrors
+    regenerate_catalog.list_subtrees so the gate's disk-side enumeration
+    and the regenerator's emission agree by construction.
+    """
     entities_root = catalog_root / "entities" / "v1-alpha"
     if not entities_root.exists():
         return []
-    return sorted([p for p in entities_root.iterdir() if p.is_dir()])
-
+    out = [
+        p
+        for p in entities_root.iterdir()
+        if p.is_dir() and not _is_top_state_grouping(p, entities_root)
+    ]
+    out.extend(_grouped_subtree_dirs(entities_root))
+    return sorted(out)
 
 def schema_validate(payload: dict[str, Any], schema: dict[str, Any]) -> list[str]:
     """Validate `payload` against `schema`; return list of error messages."""
@@ -117,7 +146,6 @@ def schema_validate(payload: dict[str, Any], schema: dict[str, Any]) -> list[str
                 )
     return errors
 
-
 def _subtree_record_id(subtree: Path) -> str:
     """Record id for a subtree: the record yaml's own id field (root, then
     candidates/), falling back to the directory name (legacy flat layout
@@ -132,7 +160,6 @@ def _subtree_record_id(subtree: Path) -> str:
         if isinstance(data, dict) and isinstance(data.get("id"), str):
             return data["id"]
     return subtree.name
-
 
 def structural_sanity(
     payload: dict[str, Any], catalog_root: Path
@@ -231,10 +258,9 @@ def structural_sanity(
 
     return errors, warnings
 
-
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Validate CATALOG.yaml for a catalog repo (CR-CATALOG-STRUCT-06a)."
+        description="Validate CATALOG.yaml for a catalog repo (CR-CATALOG-STRUCT-06a).",
     )
     parser.add_argument(
         "--catalog-root",
@@ -252,7 +278,6 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Upgrade warnings to errors.",
     )
     return parser.parse_args(argv)
-
 
 def run(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
@@ -315,7 +340,6 @@ def run(argv: list[str] | None = None) -> int:
     entities_count = len(payload.get("catalog", {}).get("entities", []))
     print(f"OK: CATALOG.yaml validates ({entities_count} entities)")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(run())
