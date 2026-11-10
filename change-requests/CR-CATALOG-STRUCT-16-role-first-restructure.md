@@ -1,6 +1,6 @@
 # CR-CATALOG-STRUCT-16: Role-First Restructure (Role Classes as Canonical Records)
 
-**Status**: Open
+**Status**: Open (PR #21)
 **Layer**: L1 (Stakeholders Catalog)
 **Owner**: Emmanuel A. Otchere
 **Date**: 2026-11-10
