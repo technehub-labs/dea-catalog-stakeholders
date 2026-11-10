@@ -47,19 +47,16 @@ ID_PATTERN = re.compile(
 
 LEGACY_RE = re.compile(r"^dea:stakeholder-")
 
-
 def _check_idm001(record_id: str) -> str | None:
     if not ID_PATTERN.match(record_id):
         return f"IDM-001: id does not match org-wide form: {record_id}"
     return None
-
 
 def _check_idm002(record_id: str) -> str | None:
     ns = record_id.split(":", 1)[0]
     if ns != NAMESPACE:
         return f"IDM-002: namespace token {ns!r} does not match repo namespace {NAMESPACE!r}: {record_id}"
     return None
-
 
 def _check_idm003(record: dict, live_ids: set[str], path: Path) -> list[str]:
     errors = []
@@ -80,7 +77,6 @@ def _check_idm003(record: dict, live_ids: set[str], path: Path) -> list[str]:
     check_refs(record)
     return errors
 
-
 def _check_idm004(record_id: str) -> str | None:
     """IDM-004: entropy suffix well-formed (6 chars over the 31-symbol
     alphabet; content-addressed at migration time, immutable thereafter)."""
@@ -89,12 +85,15 @@ def _check_idm004(record_id: str) -> str | None:
         return f"IDM-004: entropy suffix {suffix!r} is not 6 well-formed chars: {record_id}"
     return None
 
-
 def _check_idm005(record_id: str, path: Path) -> str | None:
-    """IDM-005: path derivable from id (flat layout).
+    """IDM-005: path derivable from id (flat layout, or the top-level
+    state grouping of entity-storage-layout §3.2 / CR-CATALOG-STRUCT-17).
 
     dir  = id minus '<namespace>:<level>-' prefix
     file = id with ':' normalized to '-' + '.yaml'
+    The record sits at entities/v1-alpha/<dir>/ or, for fully-retired
+    records, at entities/v1-alpha/retired/<dir>/ (the names are
+    id-derived in both locations; ids are never recomputed by a move).
     """
     body = record_id.split(":", 1)[1]
     expected_dir = body.split("-", 1)[1]
@@ -103,13 +102,17 @@ def _check_idm005(record_id: str, path: Path) -> str | None:
         return f"IDM-005: filename {path.name!r} does not match id-derived name {expected_name!r} for {record_id}"
     if path.parent.name != expected_dir:
         return f"IDM-005: dir {path.parent.name!r} does not match id-derived dir {expected_dir!r} for {record_id}"
-    if path.parent.parent.name != "v1-alpha":
-        return f"IDM-005: record not at entities/v1-alpha/<dir>/ depth for {record_id}"
-    return None
-
+    parent = path.parent.parent
+    if parent.name == "v1-alpha":
+        return None
+    if (
+        parent.name in {"research", "candidates", "retired"}
+        and parent.parent.name == "v1-alpha"
+    ):
+        return None
+    return f"IDM-005: record not at entities/v1-alpha/<dir>/ or entities/v1-alpha/<state>/<dir>/ depth for {record_id}"
 
 _RESIDUAL_VALUES: set[str] | None = None
-
 
 def _residual_values() -> set[str]:
     global _RESIDUAL_VALUES
@@ -128,7 +131,6 @@ def _residual_values() -> set[str]:
             pass
     _RESIDUAL_VALUES = values
     return values
-
 
 def _check_idm006(record: dict, path: Path) -> list[str]:
     """IDM-006: no legacy dea:* ids in STRUCTURED reference fields.
@@ -153,23 +155,28 @@ def _check_idm006(record: dict, path: Path) -> list[str]:
     walk(record)
     return errors
 
-
 def _check_idm007(path: Path) -> str | None:
     if not (path.parent / "README.md").exists():
         return f"IDM-007: missing README.md in {path.parent.name}"
     return None
 
-
 def _load_all_records() -> dict[str, tuple[Path, dict]]:
-    """Canonical records only: capabilities-*.yaml at entity dir roots."""
+    """Canonical records only: <namespace>-*.yaml at entity dir roots,
+    flat (entities/v1-alpha/<dir>/) or under a top-level state grouping
+    (entities/v1-alpha/<state>/<dir>/, entity-storage-layout §3.2,
+    CR-CATALOG-STRUCT-17)."""
     records = {}
-    for p in sorted(ENTITIES.glob("*/stakeholders-*.yaml")):
-        record = yaml.safe_load(p.read_text())
-        rid = record.get("id", "")
-        if rid:
-            records[rid] = (p, record)
+    patterns = ("*/stakeholders-*.yaml",) + tuple(
+        f"{state}/*/stakeholders-*.yaml"
+        for state in ("research", "candidates", "retired")
+    )
+    for pattern in patterns:
+        for p in sorted(ENTITIES.glob(pattern)):
+            record = yaml.safe_load(p.read_text())
+            rid = record.get("id", "")
+            if rid:
+                records[rid] = (p, record)
     return records
-
 
 # ---------------------------------------------------------------------------
 # IDM-008: PR-scoped file coherence
@@ -182,7 +189,6 @@ LEGACY_PATH_PATTERNS = (
 )
 HISTORICAL_MARKERS = ("pre-migration", "historical", "formerly", "legacy", "superseded")
 
-
 def _changed_files(base_ref: str) -> list[str]:
     for argv in (["git", "diff", "--name-only", f"{base_ref}...HEAD"],
                  ["git", "diff", "--name-only", base_ref, "HEAD"]):
@@ -190,7 +196,6 @@ def _changed_files(base_ref: str) -> list[str]:
         if r.returncode == 0:
             return [l.strip() for l in r.stdout.splitlines() if l.strip()]
     return []
-
 
 def _check_idm008_records(changed: list[str], live_ids: set[str]) -> list[dict]:
     findings: list[dict] = []
@@ -212,7 +217,6 @@ def _check_idm008_records(changed: list[str], live_ids: set[str]) -> list[dict]:
         for e in _check_idm003(record, live_ids, p) + _check_idm006(record, p):
             findings.append({"rule": "IDM-008", "path": rel, "message": e})
     return findings
-
 
 def _check_idm008_docs(changed: list[str]) -> list[dict]:
     """Advisory: changed CR/ADR markdown must not carry legacy id/path forms
@@ -244,7 +248,6 @@ def _check_idm008_docs(changed: list[str]) -> list[dict]:
                     })
     return findings
 
-
 def _write_report(path: Path, base_ref: str, changed: list[str], findings: list[dict]) -> None:
     lines = [
         "# ID System Coherence Report (IDM-008)",
@@ -261,7 +264,6 @@ def _write_report(path: Path, base_ref: str, changed: list[str], findings: list[
     lines += ([f"- [{f['rule']}] `{f['path']}`: {f['message']}" for f in findings]
               if findings else ["None."])
     path.write_text("\n".join(lines) + "\n")
-
 
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[1])
@@ -280,7 +282,7 @@ def main() -> int:
         findings = _check_idm008_records(changed, live_ids)
         findings += _check_idm008_docs(changed)
         if args.report_path:
-            _write_report(Path(args.report_path), args.base_ref, changed, findings)
+            _write_report(Path(args.report_path), base_ref, changed, findings)
         blocking = [f for f in findings if not f.get("advisory", False)]
         verdict = "NON-CONFORMANT" if blocking else "CONFORMANT"
         print(f"ID System coherence (IDM-008, base {args.base_ref}): {verdict}")
@@ -318,7 +320,6 @@ def main() -> int:
         print(json.dumps({"verdict": verdict, "records_checked": len(records),
                           "findings": findings, "blocking": len(blocking)}, indent=2))
     return 1 if (args.strict and blocking) else 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())
