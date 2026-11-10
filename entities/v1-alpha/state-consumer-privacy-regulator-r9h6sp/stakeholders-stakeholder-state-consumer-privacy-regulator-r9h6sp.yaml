@@ -1,0 +1,32 @@
+id: stakeholders:stakeholder-state-consumer-privacy-regulator-r9h6sp
+type: Stakeholder
+name: State consumer-privacy regulator
+description: 'The state or provincial authority holding rulemaking and enforcement powers
+  under a subnational consumer-privacy statute (e.g. the CCPA as amended by
+  the CPRA, the Colorado Privacy Act, the TDPSA, the VCDPA), over the
+  enterprise''s jurisdiction-facing processing. Role record: the capacity is
+  common across governed subnational territories; the state agencies and
+  attorneys general are instance evidence. Role-class record
+  (CR-CATALOG-STRUCT-16): the named parties that hold this capacity are
+  instance evidence, never the record identity; for this enterprise the
+  engaged instance is the California Privacy Protection Agency and the
+  California Attorney General.'
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: regulator
+external_references:
+- system: sibling-record
+  identifier: dea:regulation-us-ccpa-cpra (dea-catalog-regulations)
+tags:
+- regulator
+- consumer-privacy
+relationships:
+- source_id: stakeholders:stakeholder-state-consumer-privacy-regulator-r9h6sp
+  target_id: dea:regulation-us-ccpa-cpra
+  relationship_type: enforces
+  direction: source-to-target
+  rationale: 'The state authority holds rulemaking and enforcement powers under the
+    subnational consumer-privacy statute; for this enterprise the engaged
+    instance is the California Privacy Protection Agency and the California
+    Attorney General under the CCPA as amended by the CPRA. The sibling record
+    anchors the regime (evidence channel 2).'

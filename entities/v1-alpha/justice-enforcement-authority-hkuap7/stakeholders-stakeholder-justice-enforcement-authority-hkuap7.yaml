@@ -1,0 +1,30 @@
+id: stakeholders:stakeholder-justice-enforcement-authority-hkuap7
+type: Stakeholder
+name: Justice/enforcement authority
+description: 'The justice department or equivalent enforcement authority prosecuting
+  civil and criminal violations of national statute in national courts
+  (including the Defend Trade Secrets Act (2016) in the US). Role record: the
+  justice-enforcement capacity is common across governed territories; the
+  named departments are instance evidence. Role-class record
+  (CR-CATALOG-STRUCT-16): the named parties that hold this capacity are
+  instance evidence, never the record identity; for this enterprise the
+  engaged instance is the US Department of Justice (DOJ).'
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: regulator
+external_references:
+- system: sibling-record
+  identifier: dea:regulation-us-dtsa (dea-catalog-regulations)
+tags:
+- regulator
+- justice
+- trade-secrets
+relationships:
+- source_id: stakeholders:stakeholder-justice-enforcement-authority-hkuap7
+  target_id: dea:regulation-us-dtsa
+  relationship_type: enforces
+  direction: source-to-target
+  rationale: 'The justice department prosecutes civil and criminal violations of national
+    statute; for this enterprise the engaged instance is the US Department of
+    Justice, federal enforcement authority for the Defend Trade Secrets Act
+    (2016). The sibling record anchors the regime (evidence channel 2).'

@@ -1,0 +1,31 @@
+id: stakeholders:stakeholder-health-data-regulation-authority-yfkmah
+type: Stakeholder
+name: Health-data regulation authority
+description: 'The authority regulating the processing of health-related personal data
+  (e.g. the HIPAA Privacy and Security Rules in the US, PHIPA
+  health-information custodians in Ontario, HIQA''s health-information
+  framework in Ireland), with enforcement powers over the enterprise''s
+  health-data-touching processing. Role record: the health-data regulatory
+  capacity is common across governed territories; the named offices are
+  instance evidence. Role-class record (CR-CATALOG-STRUCT-16): the named
+  parties that hold this capacity are instance evidence, never the record
+  identity; for this enterprise the engaged instance is the US HHS Office for
+  Civil Rights (OCR).'
+version: 1.0.0
+lifecycle_status: active
+stakeholder_type: regulator
+external_references:
+- system: sibling-record
+  identifier: dea:regulation-us-hipaa (dea-catalog-regulations)
+tags:
+- regulator
+- health-data
+relationships:
+- source_id: stakeholders:stakeholder-health-data-regulation-authority-yfkmah
+  target_id: dea:regulation-us-hipaa
+  relationship_type: enforces
+  direction: source-to-target
+  rationale: 'The authority regulates the processing of health-related personal data; for
+    this enterprise the engaged instance is the US HHS Office for Civil Rights,
+    enforcer of the HIPAA Privacy and Security Rules. The sibling record
+    anchors the regime (evidence channel 2).'
